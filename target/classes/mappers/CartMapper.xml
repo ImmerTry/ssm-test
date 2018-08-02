@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.CartDAO">
+    <resultMap id="CartResult" type="Cart">
+        <id property="cartId" column="CartId"/>
+        <result property="adminId" column="AdminId"/>
+        <result property="count" column="Count"/>
+        <result property="createTime" column="createTime"/>
+        <result property="status" column="Status"/>
+    </resultMap>
+
+</mapper>

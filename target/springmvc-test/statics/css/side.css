@@ -1,0 +1,248 @@
+.header {
+    margin: 0;
+}
+
+.header .navtop {
+    margin: 0;
+}
+.brand {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    position: relative;
+    float: left;
+    color: #ffffff;
+    cursor: pointer;
+}
+.admin {
+     color: #ffffff;
+     position: relative;
+     float: left;
+     height: 50px;
+     line-height: 50px;
+ }
+
+.dropdown {
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    float: left;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.open {
+    transition-duration:.3s;
+    background-color:rgba(255,255,255,0.2);
+}
+
+
+
+
+.aside {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    padding-top: 10px;
+    width: 199px;
+    z-index: 99;
+    overflow: auto;
+    background-color: rgba(238, 238, 238, 0.98);
+    border-right: 1px solid #e5e5e5;
+
+}
+
+.aside .menu_dropdown dl {
+    margin-bottom: 0;
+}
+
+.aside .menu_dropdown dt {
+    display: block;
+    line-height: 35px;
+    padding-left: 15px;
+    cursor: pointer; /*cursor 改变光标*/
+    position: relative;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: normal;
+    color: #333333;
+}
+
+.aside .menu_dropdown dl dt:hover {
+    color: #e4393c;
+}
+
+.aside .menu_dropdown dt .menu_dropdown-arrow {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 15px;
+    transition-duration: 0.3s;
+    transition-property: all;
+}
+
+.aside .menu_dropdown dd {
+    display: none;
+}
+
+/*
+   设置箭头下拉旋转css样式
+*/
+.aside .menu_dropdown .selected .menu_dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/*添加selected样式 显示二级菜单*/
+.aside .menu_dropdown dd .selected {
+    display: block;
+    margin-left: 0;
+}
+
+.aside .menu_dropdown ul {
+    margin: 0;
+    padding: 0;
+}
+
+.aside .menu_dropdown li {
+    line-height: 35px;
+    overflow: hidden; /*隐藏 li*/
+    zoom: 1;
+}
+
+.aside .menu_dropdown li a {
+    padding-left: 15px;
+    display: block;
+    font-weight: bold;
+    margin: 0;
+}
+
+.aside .menu_dropdown dd ul {
+    padding: 3px 8px;
+}
+
+.aside .menu_dropdown dd li {
+    line-height: 32px;
+}
+
+.aside .menu_dropdown dd li a {
+    line-height: 32px;
+    padding-left: 26px;
+    border-bottom: none;
+    font-weight: normal;
+    text-decoration: none;
+    color: #666666;
+}
+
+.aside .menu_dropdown li a:hover {
+    color: #e4393c;
+    text-decoration: none;
+}
+
+.aside .menu_dropdown a:hover {
+    background-color: #fafafa;
+}
+
+/*左侧动态菜单收缩切换*/
+.dislpayArrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 200px;
+    width: 0;
+    height: 100%;
+    z-index: 10;
+}
+
+/*
+  动态按钮控制菜单样式
+    begin
+*/
+.dislpayArrow a {
+    position: absolute;
+    display: block;
+    width: 17px;
+    height: 60px;
+    top: 50%;
+    margin-top: -30px;
+    outline: none;
+    border-top: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #dddddd;
+}
+
+.dislpayArrow a.open {
+    background-position: 0 -61px
+}
+
+.dislpayArrow a:hover {
+    text-decoration: none;
+    background-position: right 0
+}
+
+.dislpayArrow a.open:hover {
+    background-position: right -61px
+}
+.dislpayArrow a li {
+    text-align: center;
+    text-decoration: none;
+}
+
+/*end*/
+
+/*菜单过渡时间*/
+.aside, .article_box, .dislpayArrow {
+    transition: all 0.2s ease 0s
+}
+
+.big-page .article_box, .big-page .dislpayArrow {
+    left: 0;
+}
+
+.big-page .aside {
+    left: -200px;
+}
+
+.article_box {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 199px;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.article_box .tabNav {
+    height: 35px;
+}
+
+.article_box .tabNav .breadcrumb {
+    /*padding: 5px 15px;*/
+}
+
+.article {
+    position: absolute;
+    top: 34px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    z-index: 1;
+}
+
+.show_iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.show_iframe iframe {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}

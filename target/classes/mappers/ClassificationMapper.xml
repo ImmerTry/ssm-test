@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.ClassificationDAO">
+    <resultMap id="ClassificationResult" type="Classification">
+        <id property="classId" column="classid"/>
+        <result property="className" column="classname"/>
+        <result property="viewKeyword" column="viewkeyword"/>
+    </resultMap>
+    <insert id="saveClassification"  parameterType="Classification">
+        insert into
+        t_classification(classid,classname,viewkeyword)
+        values(#{classification.classId},#{classification.className},#{classification.viewKeyword})
+    </insert>
+    <delete id="deleteClassification" parameterType="Classification">
+        delete from
+        t_classification where classid = #{id}
+    </delete>
+    <update id="updateClassification" parameterType="Classification">
+        update t_classification
+        set
+        classname=#{classification.className},viewkeyword=#{classification.viewKeyword}
+        where classid=#{classification.classId}
+    </update>
+    <select id="getClaList" parameterType="Classification" resultType="Classification">
+        select *
+        from t_classification
+    </select>
+    <select id="getClaById" resultType="Classification">
+        select *
+        from t_classification
+        where classid=#{claId}
+    </select>
+    <select id="findAll" resultType="Classification">
+        select *
+        from t_classification
+    </select>
+</mapper>

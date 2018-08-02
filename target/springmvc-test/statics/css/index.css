@@ -1,0 +1,380 @@
+a {
+    color: #222;
+}
+
+a:hover {
+    color: #00c65d;
+    text-decoration: none;
+}
+
+.nav_left_title {
+    margin-top: 20px;
+    width: 189px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #222;
+}
+
+.nav_left {
+    position: relative;
+    float: left;
+    width: 190px;
+    line-height: 80px;
+    z-index: 4;
+}
+
+.nav_item_fruit {
+    width: 189px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.item_head {
+    height: 80px;
+    line-height: 80px;
+    margin: 0 10px;
+    padding: 20px 0 0 40px;
+}
+
+.item_title {
+    width: 130px;
+    height: 19px;
+    line-height: 19px;
+    margin-bottom: 7px;
+}
+
+.show_item > span {
+    width: 7px;
+    position: relative;
+    left: 50px;
+}
+
+.fruit_children {
+    position: relative;
+    width: 130px;
+    height: 12px;
+    line-height: 12px;
+}
+
+.fruit_children > a {
+    color: darkgray;
+    font-size: 12px;
+}
+
+.fruit_children > a:hover {
+
+    color: #00c65d;
+}
+
+.fruit_menu {
+    width: 800px;
+    height: 400px;
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    position: absolute;
+    top: -1px;
+    left: 190px;
+    display: none;
+}
+
+.fruit_menu li {
+    border: 1px solid green;
+    line-height: 19px;
+    position: relative;
+    list-style: none;
+    float: left;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.fruit_menu li > div > a {
+    line-height: 19px;
+    display: block;
+    font-size: 12px;
+    color: darkgray;
+    float: left;
+    padding: 0 5px;
+}
+
+.fruit_menu li > div > a:hover {
+    color: #00c65d;
+}
+
+.nav_item_seafood {
+    width: 189px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.seafood_menu {
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    position: absolute;
+    width: 800px;
+    top: -80px;
+    height: 400px;
+    left: 190px;
+    display: none;
+}
+
+.seafood_menu li {
+    border: 1px solid green;
+    line-height: 19px;
+    position: relative;
+    list-style: none;
+    float: left;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.seafood_menu li > div > a {
+    line-height: 19px;
+    display: block;
+    font-size: 12px;
+    color: darkgray;
+    float: left;
+    padding: 0 5px;
+}
+
+.seafood_menu li > div > a:hover {
+    color: #00c65d;
+}
+
+.nav_item_meat {
+    width: 189px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.meat_menu {
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    position: absolute;
+    width: 800px;
+    top: -160px;
+    height: 400px;
+    left: 190px;
+    display: none;
+}
+
+.meat_menu li {
+    border: 1px solid green;
+    line-height: 19px;
+    position: relative;
+    list-style: none;
+    float: left;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.meat_menu li > div > a {
+    line-height: 19px;
+    display: block;
+    font-size: 12px;
+    color: darkgray;
+    float: left;
+    padding: 0 5px;
+}
+
+.meat_menu li > div > a:hover {
+    color: #00c65d;
+}
+
+.nav_item_freezing {
+    width: 189px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.freezing_menu {
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    position: absolute;
+    width: 800px;
+    top: -240px;
+    height: 400px;
+    left: 190px;
+    display: none;
+}
+
+.freezing_menu li {
+    border: 1px solid green;
+    line-height: 19px;
+    position: relative;
+    list-style: none;
+    float: left;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.freezing_menu li > div > a {
+    line-height: 19px;
+    display: block;
+    font-size: 12px;
+    color: darkgray;
+    float: left;
+    padding: 0 5px;
+}
+
+.freezing_menu li > div > a:hover {
+    color: #00c65d;
+}
+
+.nav_item_vegetables {
+    width: 189px;
+    height: 80px;
+    line-height: 80px;
+    position: relative;
+    border: 1px solid black;
+}
+
+.vegetables_menu {
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    position: absolute;
+    width: 800px;
+    top: -320px;
+    height: 400px;
+    left: 190px;
+    display: none;
+}
+
+.vegetables_menu li {
+    border: 1px solid green;
+    line-height: 19px;
+    position: relative;
+    list-style: none;
+    float: left;
+    margin: 20px;
+    padding: 0 20px;
+}
+
+.vegetables_menu li > div > a {
+    line-height: 19px;
+    display: block;
+    font-size: 12px;
+    color: darkgray;
+    float: left;
+    padding: 0 5px;
+}
+
+.vegetables_menu li > div > a:hover {
+    color: #00c65d;
+}
+
+/*头部样式*/
+.head_nav {
+    height: 30px;
+    line-height: 30px;
+    background-color: #e3e4e5;
+}
+
+.head_nav2 {
+    position: relative;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.head_nav2 ul li {
+    float: left;
+    list-style: none;
+}
+
+.fl {
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    margin-bottom: 0;
+    color: #999999;
+}
+
+.fl li {
+    padding: 0 5px;
+}
+
+.fl li a {
+    color: #999999;
+}
+
+.fl li a:hover {
+    color: #e4393c;
+}
+
+.fr {
+    padding-left: 15px;
+    padding-right: 15px;
+    float: right;
+    margin-bottom: 0;
+}
+
+.fr a {
+    color: #999999;
+}
+
+.fr a:hover {
+    color: #e4393c;
+}
+
+.container {
+    padding: 0;
+    /*background: rgb(239,239,248);*/
+}
+.broadcast {
+    position: relative;
+    float: left;
+    z-index: 1;
+}
+
+.news {
+    width: 180px;
+    position: relative;
+    float: left;
+    height: 400px;
+}
+
+.news_top {
+    height: 140px;
+}
+
+.news_header {
+    width: 200px;
+    float: left;
+    border-top: 3px solid #00c65d;
+    height: 56px;
+    line-height: 56px;
+    font-size: 16px;
+    padding: 16px 0;
+}
+.news_header span {
+    position: relative;
+    top: -20px;
+    padding: 0 40px;
+}
+
+.news_context {
+    float: left;
+}
+
+.news_context a {
+    position: relative;
+    float: left;
+    height: 18px;
+    padding-left: 18px;
+    margin-right: 16px;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.news_img {
+    height: 260px;
+}

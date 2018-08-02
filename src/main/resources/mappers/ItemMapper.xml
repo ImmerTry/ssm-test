@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.ItemDAO">
+    <resultMap id="ItemResult" type="Item">
+        <id property="itemId" column="itemid"/>
+        <result property="classId" column="classid"/>
+        <result property="itemName" column="itemname"/>
+        <result property="price" column="price"/>
+        <result property="description" column="description"/>
+        <result property="remark" column="remark"/>
+        <result property="picturePath" column="picturepath"/>
+    </resultMap>
+    <select id="getItemList" resultMap="ItemResult">
+        select *
+        from t_item
+    </select>
+    <insert id="saveItem">
+        insert into
+        t_item(itemid,classid,itemname,price,description,remark)
+        values (#{item.itemId},#{item.classId},#{item.itemName},#{item.price},#{item.description},#{item.remark})
+    </insert>
+    <delete id="deleteItem">
+        delete from
+        t_item where itemid = #{id}
+    </delete>
+    <select id="findItemById">
+        select *
+        from t_item where itemid = #{itemId}
+    </select>
+    <select id="getPage" resultType="Item">
+        select *
+        from t_item
+    </select>
+</mapper>
