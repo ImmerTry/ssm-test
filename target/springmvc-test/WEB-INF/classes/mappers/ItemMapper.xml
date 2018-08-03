@@ -25,11 +25,18 @@
         delete from
         t_item where itemid = #{id}
     </delete>
-    <select id="findItemById">
+    <update id="updateItem">
+        update t_item
+        set
+        classid=#{item.classId},itemname=#{item.itemName}
+        ,price=#{item.price},description=#{item.description},remark=#{item.remark}
+        where itemid=#{item.itemId}
+    </update>
+    <select id="findItemById" resultType="Item">
         select *
-        from t_item where itemid = #{itemId}
+        from t_item where itemid = #{id}
     </select>
-    <select id="getPage" resultType="Item">
+    <select id="getPage" resultType="java.util.Map">
         select *
         from t_item
     </select>

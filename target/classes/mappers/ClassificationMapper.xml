@@ -32,7 +32,7 @@
         from t_classification
         where classid=#{claId}
     </select>
-    <select id="findAll" resultType="Classification">
+    <select id="" resultType="java.util.Map">
         select *
         from t_classification
     </select>

@@ -40,4 +40,16 @@ public class ItemDAOTest {
         int count = itemDAO.deleteItem("1");
         System.out.println(count > 0 ? "删除成功" : "删除失败");
     }
+
+    @Test
+    public void update() {
+        Item item = new Item("1", 2, "榴莲", 20, "好吃", "good");
+        int result = itemDAO.updateItem(item);
+        System.out.println(result > 0 ? "更新成功" : "更新失败");
+    }
+    @Test
+    public void selectItem() {
+        Item item = itemDAO.findItemById("2");
+        System.out.println(item);
+    }
 }

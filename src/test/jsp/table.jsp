@@ -12,7 +12,6 @@
     <title>用户登录</title>
     <link rel="stylesheet" href="statics/layui/css/layui.css">
     <style>
-
     </style>
 </head>
 <body>
@@ -31,7 +30,7 @@
         </thead>
         <tbody>
         <tr th:each="noticeVo:${noticeVos}">
-            <td><input type="checkbox" name="noiddel" lay-skin="primary" lay-filter="itemChoose" th:value="${noticeVo.noId}"/></td>
+            <td class="news_content"><input type="checkbox" name="noiddel" lay-skin="primary" lay-filter="itemChoose" th:value="${noticeVo.noId}"/></td>
             <td style="text-align:left;"><a th:text="${noticeVo.noTitle}" th:onclick="'javascript:noticeInfo('+ ${noticeVo.noId} + ')'" href="javascript:;"></a></td>
             <td th:text="${noticeVo.empName}"></td>
             <td th:text="${noticeVo.deName}"></td>
@@ -128,7 +127,7 @@
                 $("#table tbody").html("");
                 $.each(itemList, function (index, item) {
                     itemTr = $("<tr>"
-                        + '<td>' + '<input type="checkbox" name="checked" value="' + item.itemId + '">' + '</td>'
+                        + '<td>' + '<input type="checkbox" name="checked" lay-skin="primary" value="' + item.itemId + '">' + '</td>'
                         + '<td>' + item.itemId + '</td>'
                         + '<td>' + item.itemName + '</td>'
                         + '<td>' + item.price + '</td>'
