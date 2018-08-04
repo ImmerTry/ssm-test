@@ -35,7 +35,6 @@
             </table>
         </div>
     </div>
-
     <!-- 需要弹出的添加商品界面 -->
     <div class="layui-row" id="addItemModal" style="display: none;">
         <div class="layui-col-md10">
@@ -157,21 +156,22 @@
             elem: '#table'
             // , skin: 'line ' //行边框风格
             // , even: true //开启隔行背景
-            // , size: 'lg' //小尺寸的表格
+             , size: 'lg' //小尺寸的表格
             // ,height: 600
+            ,width:1000
             , url: '/item/show.action' //数据接口
             , page: true //开启分页
             , limit: 10
             , limits: [10, 20, 30]
             , cols: [[ //表头
                 {checkbox: true, fixed: true}
-                , {field: 'itemId', title: '商品ID', width: 80, sort: true, fixed: true}
-                , {field: 'itemName', title: '名称', width: 80}
-                , {field: 'price', title: '价格', width: 80, sort: true}
-                , {field: 'classId', title: '分类ID', width: 100}
-                , {field: 'remark', title: '商品说明', width: 100}
-                , {field: 'description', title: '商品简介', width: 100}
-                , {title: '操作', templet: '#itemTpl', width: 177}
+                , {field: 'itemId', title: '商品ID', width: 125, sort: true, fixed: true}
+                , {field: 'itemName', title: '名称', width: 125}
+                , {field: 'price', title: '价格', width: 125, sort: true}
+                , {field: 'classId', title: '分类ID', width: 125}
+                , {field: 'remark', title: '商品说明', width: 125}
+                , {field: 'description', title: '商品简介', width: 125}
+                , {title: '操作', templet: '#itemTpl', width: 187}
             ]]
         });
 
