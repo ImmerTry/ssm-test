@@ -170,8 +170,8 @@
                 , {field: 'price', title: '价格', width: 125, sort: true}
                 , {field: 'classId', title: '分类ID', width: 125}
                 , {field: 'remark', title: '商品说明', width: 125}
-                , {field: 'description', title: '商品简介', width: 125}
-                , {title: '操作', templet: '#itemTpl', width: 187}
+                , {field: 'description', title: '商品简介', width: 126}
+                , {title: '操作', templet: '#itemTpl', width: 186}
             ]]
         });
 
