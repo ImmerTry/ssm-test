@@ -1,6 +1,5 @@
 package com.ssm.maven.core.controller;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.ssm.maven.core.pojo.Item;
 import com.ssm.maven.core.service.ItemService;
@@ -70,6 +69,27 @@ public class ItemController {
         return map;
     }
 
+    @RequestMapping("deleteItemInfo")
+    @ResponseBody
+    public Map<String, Object> deleteItemInfo(String str) {
+
+        Map<String, Object> map = new HashMap<>();
+        int count = 0;
+        String[] arr = str.split(",");
+        String itemId = null;
+        for (int i = 0; i < arr.length; i++) {
+            itemId = arr[i];
+            count = itemService.deleteItem(itemId);
+        }
+        if (count > 0) {
+            map.put("success", true);
+        } else {
+            map.put("success", false);
+        }
+        return map;
+    }
+
+
     @RequestMapping("update")
     @ResponseBody
     public Map<String, Object> updateItem(Item item) {
@@ -89,9 +109,9 @@ public class ItemController {
         Map<String, Object> map = new HashMap<>();
         Item item = itemService.findItemById(itemId);
         if (item != null) {
-            map.put("item",item);
+            map.put("item", item);
         } else {
-            map.put("success",false);
+            map.put("success", false);
         }
         return map;
     }

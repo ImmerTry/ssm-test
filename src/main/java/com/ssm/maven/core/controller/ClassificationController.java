@@ -25,10 +25,10 @@ public class ClassificationController {
 
     @RequestMapping("show")
     @ResponseBody
-    public Map<String,Object> showCla() {
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> showCla() {
+        Map<String, Object> map = new HashMap<>();
         List<Classification> claLists = claService.getClaList();
-        map.put("claLists",claLists);
+        map.put("claLists", claLists);
         // System.out.println(claLists);
         return map;
     }
@@ -92,9 +92,8 @@ public class ClassificationController {
     @RequestMapping("getClaById")
     @ResponseBody
     public Classification getClaById(int classId) {
-        Classification classification=claService.getClaById(classId);
+        Classification classification = claService.getClaById(classId);
         return classification;
-
     }
 
     @RequestMapping("getPage")
@@ -113,7 +112,7 @@ public class ClassificationController {
         //开始分页
         List<Map<String, Object>> pageInfoByCondition = null;
         try {
-            pageInfoByCondition = claService.findAll(pageNum,pageSize);
+            pageInfoByCondition = claService.findAll(pageNum, pageSize);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
