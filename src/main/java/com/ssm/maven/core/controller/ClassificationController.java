@@ -87,6 +87,13 @@ public class ClassificationController {
             map.put("msg", "删除成功");
         }
         return map;
+    }
+
+    @RequestMapping("getClaById")
+    @ResponseBody
+    public Classification getClaById(int classId) {
+        Classification classification=claService.getClaById(classId);
+        return classification;
 
     }
 
