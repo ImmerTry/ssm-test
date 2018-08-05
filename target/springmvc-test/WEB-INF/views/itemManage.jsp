@@ -156,9 +156,9 @@
             elem: '#table'
             // , skin: 'line ' //行边框风格
             // , even: true //开启隔行背景
-             , size: 'lg' //小尺寸的表格
+            , size: 'lg' //小尺寸的表格
             // ,height: 600
-            ,width:1000
+            , width: 1000
             , url: '/item/show.action' //数据接口
             , page: true //开启分页
             , limit: 10
@@ -170,8 +170,8 @@
                 , {field: 'price', title: '价格', width: 125, sort: true}
                 , {field: 'classId', title: '分类ID', width: 125}
                 , {field: 'remark', title: '商品说明', width: 125}
-                , {field: 'description', title: '商品简介', width: 125}
-                , {title: '操作', templet: '#itemTpl', width: 187}
+                , {field: 'description', title: '商品简介', width: 126}
+                , {title: '操作', templet: '#itemTpl', width: 186}
             ]]
         });
 
@@ -207,6 +207,14 @@
                 });
             } else if (layEvent === 'edit') { //编辑
 
+                var claId = data.classId;
+
+                var url = "/cla/getClaById.action"
+                $.get(url, function () {
+
+                    }
+                )
+
                 layer.open({
                     type: 1,
                     title: "编辑商品",
@@ -214,24 +222,26 @@
                     content: $("#editItemModal").html()
                 });
 
-                $.ajax({
-                    url: "/item/selectItem.action",
-                    type: "POST",
-                    data: {"itemId": data.itemId},
-                    dataType: "json",
-                    success: function (data) {
-                        var item = data.item;
-                        form.val("editForm",{
-                            "itemId":$("#itemId").val(item.itemId),
-                            "editClaSelect":$("#editClaSelect").val(item.classId),
-                            "itemName":$("#itemName").val(item.itemName),
-                            "price":$("#price").val(item.price),
-                            "description":$("#description").val(item.description),
-                            "remark":$("#remark").val(item.remark),
-                        })
-                    }
 
-                });
+                // $.ajax({
+                //     url: "/item/selectItem.action",
+                //     type: "POST",
+                //     data: {"itemId": data.itemId},
+                //     dataType: "json",
+                //     success: function (data) {
+                //         var item = data.item;
+                //         form.val("editForm",{
+                //             "itemId":$("#itemId").val(item.itemId),
+                //             "editClaSelect":$("#editClaSelect").val(item.classId),
+                //             "itemName":$("#itemName").val(item.itemName),
+                //             "price":$("#price").val(item.price),
+                //             "description":$("#description").val(item.description),
+                //             "remark":$("#remark").val(item.remark),
+                //         })
+                //     }
+                //
+                // });
+                <!--ajax-->
 
 
             }
