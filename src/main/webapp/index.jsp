@@ -35,7 +35,7 @@
         <div class="nav_item_fruit">
             <div class="item_head">
                 <div class="item_title">
-                    <a class="show_item" href="${pageContext.request.contextPath}/user/fruit.action">新鲜水果
+                    <a class="show_item" href="/page/showFruit.action">新鲜水果
                         <span>></span></a>
                 </div>
                 <ul class="fruit_menu">
