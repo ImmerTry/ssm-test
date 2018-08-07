@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-    <h3><a href="show.html">生鲜</a>>水果</h3>
+    <h3><a href="index.jsp">生鲜</a>>水果</h3>
     <div class="row">
         <div class="col-lg-2.4 col-md-3">
             <ul>

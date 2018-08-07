@@ -28,4 +28,8 @@ public class PageRedirectController {
         return "redirect:/login.jsp";
     }
 
+    @RequestMapping("/showFruit")
+    public String showFruit(HttpServletRequest request) {
+        return "redirect:/fruit.jsp";
+    }
 }

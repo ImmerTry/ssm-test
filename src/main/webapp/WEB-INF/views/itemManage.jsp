@@ -30,7 +30,7 @@
     <!-- 表格列 -->
     <div class="layui-row">
         <div class="layui-col-md12">
-            <table class="layui-table" id="table" lay-filter="useruv">
+            <table class="layui-table" id="itemTable" lay-filter="itemTable">
             </table>
         </div>
     </div>
@@ -84,7 +84,7 @@
         </div>
     </div>
     <!-- 需要弹出的编辑商品界面 -->
-    <div class="layui-row" id="editItemModal" style="display: none;">
+    <div class="layui-row" id="editItemModal"style="display: none">
         <div class="layui-col-md10">
             <form class="layui-form" lay-filter="editForm">
                 <div class="layui-form-item">
@@ -144,13 +144,13 @@
 <script type="text/javascript">
 
     layui.use(["form", "table", "laypage", "layer"], function () {
-        var form = layui.form;
-        var laypage = layui.laypage;
-        var layer = layui.layer;
-        var table = layui.table;
+        var form = layui.form
+            , laypage = layui.laypage
+            , layer = layui.layer
+            , table = layui.table;
 
         table.render({
-            elem: '#table'
+            elem: '#itemTable'
             // , skin: 'line ' //行边框风格
             // , even: true //开启隔行背景
             , size: 'lg' //小尺寸的表格
@@ -239,15 +239,15 @@
         });
 
         //监听表格复选框选择
-        table.on('checkbox(useruv)', function (obj) {
+        table.on('checkbox(itemTable)', function (obj) {
             console.log(obj);
         });
 
         <!--table工具条-->
-        table.on('tool(useruv)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-            var data = obj.data; //获得当前行数据
-            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-            var tr = obj.tr; //获得当前行 tr 的DOM对象
+        table.on('tool(itemTable)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+                , tr = obj.tr; //获得当前行 tr 的DOM对象
             if (layEvent === 'detail') { //查看
                 //do somehing
             } else if (layEvent === 'del') { //删除
@@ -283,27 +283,27 @@
                 $("select[name=classId]").empty();//清空
                 var url = "/cla/show.action";
                 $.post(url, function (result) {
-                    var claLists = result.claLists;
-                    var claSelect = $("#editClaSelect");
+                    var claLists = result.claLists
+                        , claSelect = $("#editClaSelect");
                     // console.log(typeof data);
                     $.each(claLists, function (index, item) {
                         // console.log(claNames);
                         var claOption = $("<option value='" + item.classId + "'>" + item.className + "</option>");
                         claSelect.append(claOption);
                     });
-                    $("#editClaSelect option[value='"+editClaId+"']").attr("selected","selected"); //根据表格中的claId选中
+                    $("#editClaSelect option[value='" + editClaId + "']").attr("selected", "selected"); //根据表格中的claId选中
                     form.render();
                 });
                 <!--编辑初始化赋值-->
-                form.val("editForm",{
-                    "itemId":data.itemId,
+                form.val("editForm", {
+                    "itemId": data.itemId,
                     "editClaSelect": data.classId,
                     "itemName": data.itemName,
                     "price": data.price,
                     "description": data.description,
-                    "remark":data.remark,
+                    "remark": data.remark,
                 });
-                form.on('submit(edit)',function (data) {
+                form.on('submit(edit)', function (data) {
                     var itemInfo = data.field;
                     $.ajax({
                         url: "/item/update.action",
@@ -326,10 +326,6 @@
 
                     });
                 });
-
-                <!--ajax-->
-
-
             }
         });
 
@@ -348,8 +344,8 @@
             /* 异步获取分类数据填充到分类ID Select */
             var url = "/cla/show.action";
             $.post(url, function (data) {
-                var claLists = data.claLists;
-                var claSelect = $("#claSelect");
+                var claLists = data.claLists
+                    , claSelect = $("#claSelect");
                 // console.log(typeof data);
                 $.each(claLists, function (index, item) {
                     // console.log(claNames);
@@ -395,7 +391,6 @@
 
     });
 </script>
-<%--<script src="../../statics/js/itempage.js"></script>--%>
 
 </body>
 </html>

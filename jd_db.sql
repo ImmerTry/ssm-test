@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 04/08/2018 08:38:39
+ Date: 07/08/2018 21:34:04
 */
 
 SET NAMES utf8mb4;
@@ -63,7 +63,7 @@ CREATE TABLE `t_item` (
   `price` int(20) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
-  `picturepath` varchar(150) DEFAULT NULL,
+  `picturepath` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`itemid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,21 +71,19 @@ CREATE TABLE `t_item` (
 -- Records of t_item
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_item` VALUES ('2', 0, NULL, 0, NULL, NULL, NULL);
-INSERT INTO `t_item` VALUES ('3', 2, 'dfssf', 2, 'd', 'd', NULL);
-INSERT INTO `t_item` VALUES ('4', 2, 'dfssf', 2, 'd', 'd', NULL);
+INSERT INTO `t_item` VALUES ('1', 1, '香蕉', 2, '好好吃', '好吃不得了', NULL);
+INSERT INTO `t_item` VALUES ('10', 1, 'fsd', 3, '好好吃', '好吃不得了', NULL);
+INSERT INTO `t_item` VALUES ('2', 2, '三文鱼', 3, '美味', '新鲜美味', NULL);
+INSERT INTO `t_item` VALUES ('3', 2, '香蕉', 4, '好好吃', '好吃不得了', NULL);
+INSERT INTO `t_item` VALUES ('4', 3, '香蕉', 3, '好好吃', '新鲜美味', NULL);
 INSERT INTO `t_item` VALUES ('5', 3, 'd', 2, 'd', 'd', NULL);
 INSERT INTO `t_item` VALUES ('6', 1, 'dfssf', 2, 'd', 'd', NULL);
 INSERT INTO `t_item` VALUES ('7', 4, 'dfssf', 2, '2', 'd', NULL);
-INSERT INTO `t_item` VALUES ('8', 2, 'd', 2, 'd', 'v', NULL);
-INSERT INTO `t_item` VALUES ('dasd', 1, 'da', 2, '超大超甜', '好吃', NULL);
-INSERT INTO `t_item` VALUES ('dasfadsfs', 1, 'sf', 34, '好好吃', '好吃不酸', NULL);
-INSERT INTO `t_item` VALUES ('dazao', 5, '大枣', 2, '超大超甜', '新疆大红枣', NULL);
-INSERT INTO `t_item` VALUES ('ds', 1, '苹果', 2, '好吃的不得了', '山东红富士', NULL);
-INSERT INTO `t_item` VALUES ('dsadadg', 1, 'g', 2, 'd', 'd', NULL);
+INSERT INTO `t_item` VALUES ('8', 3, 'd', 2, 'd', 'v', NULL);
+INSERT INTO `t_item` VALUES ('dasd', 1, '香蕉', 2, '好好吃', '好吃不得了', NULL);
+INSERT INTO `t_item` VALUES ('dasda', 1, 'asd', 3, '好好吃', '新鲜美味', NULL);
+INSERT INTO `t_item` VALUES ('dasdas', 1, 'fsd', 3, '好好吃', '好吃不得了', NULL);
 INSERT INTO `t_item` VALUES ('fish', 2, '三文鱼', 2, '来自日本北海道', '日本三文鱼', NULL);
-INSERT INTO `t_item` VALUES ('huolongguo', 1, '火龙果', 2, '好好吃', '好吃', NULL);
-INSERT INTO `t_item` VALUES ('juzi', 1, '橘子', 2, '杠杠滴', '好吃不酸', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -132,6 +130,17 @@ CREATE TABLE `t_order_send` (
   `postalcode` int(6) NOT NULL,
   PRIMARY KEY (`sendid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for t_picture
+-- ----------------------------
+DROP TABLE IF EXISTS `t_picture`;
+CREATE TABLE `t_picture` (
+  `itemid` varchar(20) COLLATE utf8_bin NOT NULL,
+  `picturepath` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `classid` int(20) NOT NULL,
+  PRIMARY KEY (`itemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Table structure for t_user

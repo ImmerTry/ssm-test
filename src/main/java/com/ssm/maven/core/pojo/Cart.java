@@ -6,7 +6,7 @@ public class Cart {
     private String cartId;  //购物车唯一标识
     private int adminId;    //用户id(自增列)
     private int count;      //购买数量
-    private Date createTime;    //创建事件
+    private Date createTime;    //创建时间
     private int status; //购物车状态
 
     public Cart() {

@@ -36,7 +36,7 @@
         select *
         from t_item where itemid = #{id}
     </select>
-    <select id="getPage" resultType="Item">
+    <select id="getPage" resultType="Item" resultMap="ItemResult">
         select *
         from t_item
     </select>

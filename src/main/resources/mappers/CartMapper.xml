@@ -4,11 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.maven.core.dao.CartDAO">
     <resultMap id="CartResult" type="Cart">
-        <id property="cartId" column="CartId"/>
-        <result property="adminId" column="AdminId"/>
-        <result property="count" column="Count"/>
-        <result property="createTime" column="createTime"/>
-        <result property="status" column="Status"/>
+        <id property="cartId" column="cartid"/>
+        <result property="adminId" column="adminid"/>
+        <result property="count" column="count"/>
+        <result property="createTime" column="createtime"/>
+        <result property="status" column="status"/>
     </resultMap>
+    <update id="updateCart">
+        update t_cart
+        set count=#{cart.count}
+        where cartid=#{cart.cartId}
+    </update>
+    <delete id="deleteCart">
+        delete from t_cart
+        where cartid=#{cart.cartId}
+    </delete>
+    <select id="getCartList" resultType="Cart">
+        select *
+        from t_cart
+    </select>
 
 </mapper>
