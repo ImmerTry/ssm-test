@@ -1,15 +1,19 @@
 package com.ssm.maven.core.util;
 
-public class LayuiTableRtn {
+public class LayuiRtn {
     private int code;
     private String msg;
     private long count;
     private Object data;
 
-    public LayuiTableRtn() {
+    public LayuiRtn() {
     }
 
-    public LayuiTableRtn(int code, String msg, long count, Object data) {
+    public LayuiRtn(int code) {
+        this.code = code;
+    }
+
+    public LayuiRtn(int code, String msg, long count, Object data) {
         this.code = code;
         this.msg = msg;
         this.count = count;

@@ -3,7 +3,7 @@ package com.ssm.maven.core.controller;
 import com.github.pagehelper.PageInfo;
 import com.ssm.maven.core.pojo.Item;
 import com.ssm.maven.core.service.ItemService;
-import com.ssm.maven.core.util.LayuiTableRtn;
+import com.ssm.maven.core.util.LayuiRtn;
 import com.ssm.maven.core.util.Pager;
 import com.ssm.maven.core.util.StringUtil;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ public class ItemController {
         List<Map<String, Object>> itemList = itemService.getPage(page.getPage(), page.getRows());
         if (itemList.size() != 0) {
             PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(itemList);
-            return new LayuiTableRtn(0, "", pageInfo.getTotal(), itemList);
+            return new LayuiRtn(0, "", pageInfo.getTotal(), itemList);
         }
         return null;
     }
