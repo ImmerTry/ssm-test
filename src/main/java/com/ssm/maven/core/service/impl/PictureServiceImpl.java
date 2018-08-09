@@ -1,5 +1,6 @@
 package com.ssm.maven.core.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.ssm.maven.core.dao.PictureDAO;
 import com.ssm.maven.core.pojo.Picture;
 import com.ssm.maven.core.service.PictureService;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service("pictureService")
 public class PictureServiceImpl implements PictureService {
@@ -25,8 +27,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public int deletePicture(Picture picture) {
-        return pictureDAO.deletePicture(picture);
+    public int deletePicture(String itemId) {
+        return pictureDAO.deletePicture(itemId);
     }
 
     @Override
@@ -37,5 +39,11 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public Picture getPictureByItemId(String itemId) {
         return pictureDAO.getPictureByItemId(itemId);
+    }
+
+    @Override
+    public List<Map<String, Object>> getPage(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        return pictureDAO.getPage();
     }
 }

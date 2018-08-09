@@ -11,6 +11,12 @@ public class Picture {
     public Picture() {
     }
 
+    public Picture(String itemId, String picturePath, int classId) {
+        this.itemId = itemId;
+        this.picturePath = picturePath;
+        this.classId = classId;
+    }
+
     public String getItemId() {
         return itemId;
     }

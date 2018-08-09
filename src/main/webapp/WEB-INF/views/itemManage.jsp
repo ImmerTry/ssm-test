@@ -59,7 +59,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">分类ID：</label>
                     <div class="layui-input-block">
-                        <select class="layui-input" name="classId" id="claSelect">
+                        <select class="layui-input" id="claSelect" name="classId" lay-filter="claSelect">
                         </select>
                     </div>
                 </div>

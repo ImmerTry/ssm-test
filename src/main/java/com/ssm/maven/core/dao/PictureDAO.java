@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface PictureDAO {
@@ -27,10 +28,10 @@ public interface PictureDAO {
     /**
      * 删除图片
      *
-     * @param picture
+     * @param itemId
      * @return
      */
-    int deletePicture(@Param("picture") Picture picture);
+    int deletePicture(@Param("itemId") String itemId);
 
     /**
      * 修改图片信息
@@ -47,4 +48,10 @@ public interface PictureDAO {
      * @return
      */
     Picture getPictureByItemId(@Param("itemId") String itemId);
+
+    /**
+     * 获取分页
+     * @return
+     */
+    List<Map<String,Object>> getPage();
 }

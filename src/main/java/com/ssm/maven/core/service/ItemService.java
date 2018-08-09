@@ -45,6 +45,8 @@ public interface ItemService {
 
     /**
      * 填充数据 获取分页
+     * @param pageNum
+     * @param pageSize
      * @return
      */
     List<Map<String,Object>> getPage(int pageNum, int pageSize);

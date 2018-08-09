@@ -32,13 +32,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">商品ID：</label>
             <div class="layui-input-block">
-                <input type="text" name="itemId" placeholder="商品ID" autocomplete="off" class="layui-input">
+                <input type="text" name="itemId" id="itemId" placeholder="商品ID" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">分类ID</label>
             <div class="layui-input-block">
-                <select name="classId" lay-filter="claSelect">
+                <select name="classId" id="claSelect" lay-filter="claSelect">
                 </select>
             </div>
         </div>
@@ -89,7 +89,7 @@
         table.render({
             elem: '#pictureTable'
             // , height: 315
-            , url: '' //数据接口
+            , url: '/picture/show.action' //数据接口
             , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'] //自定义分页布局
                 //,curr: 5 //设定初始在第 5 页
@@ -97,17 +97,81 @@
                 // ,first: false //不显示首页
                 // ,last: false //不显示尾页
             }
-            , width: 800
+            , width: 1000
             , limit: 10
             , limits: [10, 20, 30]
             , cols: [[ //表头
                 {type: 'checkbox'}
                 , {field: 'itemId', title: '商品ID', sort: true}
                 , {field: 'picture', width: 200, align: 'center', title: '图片'}
-                , {field: 'picturePath', width: 150, title: '图片地址'}
+                , {field: 'itemName', width: 150, title: '图片名称'}
+                , {field: 'picturePath', width: 200, title: '图片地址'}
                 , {field: 'classId', align: 'center', title: '分类ID', sort: true}
-                , {title: '操作', width: 150, templet: '#barDemo'}
+                , {title: '操作', width: 180, templet: '#barDemo'}
             ]]
+            , id: 'idTest'
+        });
+        /**
+         * 批量删除
+         * @type {pe}
+         */
+        var $ = layui.$, active = {
+            getCheckData: function () { //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    , data = checkStatus.data;
+                // layer.alert(JSON.stringify(data));
+                var str = "";
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        str += data[i].itemId + ",";
+                    }
+                    layer.confirm('确定删除' + data.length + '条选中的信息？', {
+                        icon: 3,
+                        title: '提示信息'
+                    }, function (index) {
+                        var index = layer.msg('删除中，请稍候', {
+                            icon: 16,
+                            time: false,
+                            shade: 0.8
+                        });
+                        setTimeout(function () {
+                            //删除数据
+                            $.post("/picture/deletePictureInfo.action", {
+                                "str": str,
+                                // token: localStorage.getItem("token")
+                            }, function (result) {
+                                if (result.success) {
+                                    layer.msg('已删除!', {
+                                        icon: 1,
+                                        time: 1000,
+                                        end: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    layer.msg('删除失败', {
+                                        icon: 2,
+                                        time: 1000,
+                                        end: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                }
+                            });
+
+                            form.render();
+                            layer.close(index);
+                        }, 2000);
+                    })
+                } else {
+                    layer.msg("请选择需要删除的图片");
+                }
+
+            }
+        };
+        $('.layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
         });
         /**
          * 表格 工具条监听事件
@@ -122,9 +186,22 @@
                 //do somehing
             } else if (layEvent === 'del') { //删除
                 layer.confirm('真的删除行么', function (index) {
-                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                    layer.close(index);
-                    //向服务端发送删除指令
+
+                    $.ajax({
+                        url: '/picture/delete.action'
+                        , data: {"itemId": data.itemId}
+                        , type: 'post'
+                        , dataType: 'json'
+                        , success: function (data) {
+                            if (data.success) {
+                                obj.del();
+                                layer.close(index);
+                                layer.msg("删除成功", {icon: 6});
+                            } else {
+                                layer.msg("删除失败", {icon: 5});
+                            }
+                        }
+                    });
                 });
             } else if (layEvent === 'edit') { //编辑
                 //do something
@@ -141,27 +218,42 @@
          * 用户点击添加图片按钮触发
          */
         $(".addPicBtn").on('click', function () {
-            var success = 0;
-            var fail = 0;
-            var imgurls = "";
+
             layer.open({
                 type: 1,
-                area: ['500px', '400px'],
+                area: ['800px', '500px'],
                 title: "图片上传",
                 content: $("#pictureModal")
+            });
+            $("select[name=classId]").empty();
+            /* 异步获取分类数据填充到分类ID Select */
+            var url = "/cla/show.action";
+            $.post(url, function (data) {
+                var claLists = data.claLists
+                    , claSelect = $("#claSelect");
+                // console.log(typeof data);
+                $.each(claLists, function (index, item) {
+                    // console.log(claNames);
+                    var claOption = $("<option value='" + item.classId + "'>" + item.className + "</option>");
+                    claSelect.append(claOption);
+                });
+                form.render();
             });
         });
         /**
          * 渲染upload插件
          */
+        var success = 0
+            , fail = 0
+            , imgurls = "";
         upload.render({
             elem: '#upload'
             , url: '/picture/upload.action'
-            , multiple: true
+            , multiple: true    //支持多文件上传
             , auto: false //选择文件后不自动上传
+            , field: 'file'
             , size: 1024  //上传图片大小
             , number: 5   //最多上传数量
-            , field: 'file'
             , bindAction: "#uploadBtn" //指向一个按钮触发上传
             , before: function (obj) {
                 obj.preview(function (index, file, result) {
@@ -213,14 +305,25 @@
          * 图片上传保存
          */
         form.on('submit(addPicture)', function (data) {
-            var pictureInfo = data.field
-                , url = '/picture/save.action';
-            // console.log(pictureInfo);
-            $.post(url, {pictureInfo: 'pictureInfo'}, function (data) {
-                if (data.success) {
-                    layer.msg("添加成功")
-                } else {
-                    layer.msg("添加失败")
+            var pictureInfo = data.field;
+            console.log(pictureInfo);
+            var itemId = $("#itemId").val()
+                , classId = $("#claSelect").val()
+                , imgUrls = $("#imgUrls").val();
+            $.ajax({
+                type: "POST",
+                url: '/picture/save.action',
+                data: {
+                    itemId: itemId,
+                    classId: classId,
+                    picturePath: imgUrls,
+                },
+                success: function (data) {
+                    if (data.success) {
+                        layer.alert("保存成功");
+                    } else {
+                        layer.alert("保存失败");
+                    }
                 }
             });
         });

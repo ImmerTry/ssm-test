@@ -4,6 +4,7 @@ package com.ssm.maven.core.service;
 import com.ssm.maven.core.pojo.Picture;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PictureService {
 
@@ -25,10 +26,10 @@ public interface PictureService {
     /**
      * 删除图片
      *
-     * @param picture
+     * @param itemId
      * @return
      */
-    int deletePicture(Picture picture);
+    int deletePicture(String itemId);
 
     /**
      * 修改图片信息
@@ -45,5 +46,13 @@ public interface PictureService {
      * @return
      */
     Picture getPictureByItemId(String itemId);
+
+    /**
+     * 填充获取分页
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    List<Map<String,Object>> getPage(int pageNum, int pageSize);
 
 }

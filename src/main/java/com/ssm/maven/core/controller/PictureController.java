@@ -1,10 +1,13 @@
 package com.ssm.maven.core.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.ssm.maven.core.pojo.Picture;
 import com.ssm.maven.core.service.PictureService;
 import com.ssm.maven.core.util.LayuiRtn;
+import com.ssm.maven.core.util.Pager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -25,9 +29,19 @@ public class PictureController {
 
     @RequestMapping("/save")
     @ResponseBody
-    public Map<String, Object> savePictureInfo(Picture picture) {
+    public Map<String, Object> savePictureInfo(String itemId, int classId, String picturePath) {
         Map<String, Object> map = new HashMap<>();
-        int count = pictureService.savePicture(picture);
+        Picture picture = new Picture(itemId, picturePath, classId);
+        int count = 0;
+        // picture.setItemId(itemId);
+        // picture.setClassId(classId);
+        // String[] urls = picturePath.split(",");
+        // for (int i = 0; i < urls.length; i++) {
+        //         picturePath = urls[i];
+        //         picture.setPicturePath(picturePath);
+        //     count = pictureService.savePicture(picture);
+        // }
+        count = pictureService.savePicture(picture);
         if (count > 0) {
             map.put("success", true);
         } else {
@@ -51,9 +65,14 @@ public class PictureController {
             String uuid = UUID.randomUUID().toString();
             String newName = uuid + extName;
             // 4.获取要保存的路径文件夹
-            String realPath = request.getServletContext().getRealPath("upload/");
+            // System.out.println(request.getSession().getServletContext().getRealPath(""));
+            String realPath = request.getSession().getServletContext().getRealPath("upload/");
+            File rel = new File(realPath);
+            if (!rel.exists() && !rel.isDirectory()) {
+                rel.mkdir();
+            }
             // 5.保存图片
-            desFilePath = realPath + "\\" + newName;
+            desFilePath = realPath + newName;
             File desFile = new File(desFilePath);
             file.transferTo(desFile);
             System.out.println(desFilePath);
@@ -68,4 +87,52 @@ public class PictureController {
             return new LayuiRtn(1);
         }
     }
+
+    @RequestMapping("/show")
+    @ResponseBody
+    public Object showPicture(Pager page) {
+
+        List<Map<String, Object>> pictureList = pictureService.getPage(page.getPage(), page.getRows());
+        if (pictureList.size() != 0) {
+            PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pictureList);
+            return new LayuiRtn(0, "", pageInfo.getTotal(), pictureList);
+        }
+        return null;
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public Map<String, Object> deletePicture(String itemId) {
+        Map<String, Object> map = new HashMap<>();
+
+        int count = pictureService.deletePicture(itemId);
+        if (count > 0) {
+            map.put("success", true);
+        } else {
+            map.put("success", false);
+        }
+        return map;
+    }
+
+    @RequestMapping("deletePictureInfo")
+    @ResponseBody
+    public Map<String, Object> deleteItemInfo(String str) {
+
+        Map<String, Object> map = new HashMap<>();
+        int count = 0;
+        String[] arr = str.split(",");
+        String itemId = null;
+        for (int i = 0; i < arr.length; i++) {
+            itemId = arr[i];
+            count = pictureService.deletePicture(itemId);
+        }
+        if (count > 0) {
+            map.put("success", true);
+        } else {
+            map.put("success", false);
+        }
+        return map;
+    }
+
+
 }
