@@ -80,15 +80,13 @@ public class PictureController {
             String newName = uuid + extName;
             // 4.获取要保存的路径文件夹
             // System.out.println(request.getSession().getServletContext().getRealPath(""));
-            String realPath = request.getSession().getServletContext().getRealPath("upload/");
-            File rel = new File(realPath);
+            String realPath = request.getSession().getServletContext().getRealPath("upload");
+            File rel = new File(realPath,newName);
             if (!rel.exists() && !rel.isDirectory()) {
-                rel.mkdir();
+                rel.mkdirs();
             }
             // 5.保存图片
-            desFilePath = realPath + newName;
-            File desFile = new File(desFilePath);
-            file.transferTo(desFile);
+            file.transferTo(rel);
             System.out.println(desFilePath);
             // 6.返回保存结果信息
             dataMap.put("src", "upload/" + newName);

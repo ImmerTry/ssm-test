@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/base.jsp" %>
 <html>
 <head>
     <title>图片管理</title>
@@ -75,14 +76,11 @@
 </script>
 <script src="../../statics/js/jquery-3.3.1.min.js"></script>
 <script type="text/html" id="picture">
-
-    <div>
-        <a href="#">
-            <img src="{{
-            }}"/>
-
-        </a>
-    </div>
+    {{# if(d.picturePath!=""){   }}
+            <img src="${ctx}/{{d.picturePath.split(',')[0]}}"/>
+    {{# }else{   }}
+    没有图片
+    {{#  }  }}
 </script>
 <script src="../../statics/layui/layui.js"></script>
 <script>
@@ -98,7 +96,7 @@
          */
         table.render({
             elem: '#pictureTable'
-            // , height: 315
+             , height: 315
             , url: '/picture/show.action' //数据接口
             , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'] //自定义分页布局
@@ -113,7 +111,7 @@
             , cols: [[ //表头
                 {type: 'checkbox'}
                 , {field: 'itemId', title: '商品ID', sort: true}
-                , {field: 'picture', title: '封面', width: 200, templet: '#picture'}
+                , {field: 'picturePath', title: '封面', width: 200, templet: '#picture'}
                 , {field: 'itemName', width: 150, title: '图片名称'}
                 , {field: 'picturePath', width: 200, title: '图片地址'}
                 , {field: 'classId', align: 'center', title: '分类ID', sort: true}
@@ -336,6 +334,7 @@
                     }
                 }
             });
+            return false;
         });
 
         /**
