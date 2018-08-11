@@ -7,7 +7,6 @@ import com.ssm.maven.core.util.LayuiRtn;
 import com.ssm.maven.core.util.Pager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +26,14 @@ public class PictureController {
     @Resource
     private PictureService pictureService;
 
+    /**
+     * 保存图片
+     *
+     * @param itemId
+     * @param classId
+     * @param picturePath
+     * @return
+     */
     @RequestMapping("/save")
     @ResponseBody
     public Map<String, Object> savePictureInfo(String itemId, int classId, String picturePath) {
@@ -50,6 +57,13 @@ public class PictureController {
         return map;
     }
 
+    /**
+     * 多张图片上传
+     *
+     * @param file
+     * @param request
+     * @return
+     */
     @RequestMapping("/upload")
     @ResponseBody
     public Object savePicture(MultipartFile file, HttpServletRequest request) {
@@ -88,6 +102,12 @@ public class PictureController {
         }
     }
 
+    /**
+     * 表格数据渲染
+     *
+     * @param page
+     * @return
+     */
     @RequestMapping("/show")
     @ResponseBody
     public Object showPicture(Pager page) {
@@ -100,6 +120,12 @@ public class PictureController {
         return null;
     }
 
+    /**
+     * 单个删除
+     *
+     * @param itemId
+     * @return
+     */
     @RequestMapping("delete")
     @ResponseBody
     public Map<String, Object> deletePicture(String itemId) {
@@ -114,6 +140,12 @@ public class PictureController {
         return map;
     }
 
+    /**
+     * 批量删除
+     *
+     * @param str
+     * @return
+     */
     @RequestMapping("deletePictureInfo")
     @ResponseBody
     public Map<String, Object> deleteItemInfo(String str) {
@@ -135,4 +167,18 @@ public class PictureController {
     }
 
 
+    @RequestMapping("/selectPic")
+    @ResponseBody
+    public Map<String, Object> selectPic() {
+        Map<String, Object> map = new HashMap<>();
+        Picture picture;
+        List list = pictureService.getPictureList();
+        String[] path = null;
+        for (int i = 0; i < list.size(); i++) {
+            picture = (Picture) list.get(i);
+            path = picture.getPicturePath().split(",");
+            map.put("path",path[0]);
+        }
+        return map;
+    }
 }

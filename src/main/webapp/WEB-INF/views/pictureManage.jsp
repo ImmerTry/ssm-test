@@ -74,6 +74,16 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script src="../../statics/js/jquery-3.3.1.min.js"></script>
+<script type="text/html" id="picture">
+
+    <div>
+        <a href="#">
+            <img src="{{
+            }}"/>
+
+        </a>
+    </div>
+</script>
 <script src="../../statics/layui/layui.js"></script>
 <script>
     layui.use(["form", "table", "laypage", "layer", "upload"], function () {
@@ -103,7 +113,7 @@
             , cols: [[ //表头
                 {type: 'checkbox'}
                 , {field: 'itemId', title: '商品ID', sort: true}
-                , {field: 'picture', width: 200, align: 'center', title: '图片'}
+                , {field: 'picture', title: '封面', width: 200, templet: '#picture'}
                 , {field: 'itemName', width: 150, title: '图片名称'}
                 , {field: 'picturePath', width: 200, title: '图片地址'}
                 , {field: 'classId', align: 'center', title: '分类ID', sort: true}
@@ -261,7 +271,7 @@
                         + '" alt="' + file.name
                         + '"height="92px" width="92px" class="layui-upload-img uploadImgPreView">')
                     //这里还可以做一些 append 文件列表 DOM 的操作
-
+                    // console.log(file.name);
                     //obj.upload(index, file); //对上传失败的单个文件重新上传，一般在某个事件中使用
                     //delete files[index]; //删除列表中对应的文件，一般在某个事件中使用
                 });
@@ -327,6 +337,18 @@
                 }
             });
         });
+
+        /**
+         * 获取图片路径
+         */
+        $.ajax({
+            type: "POST",
+            url: '/picture/selectPic.action',
+            // data:{itemId : itemId},
+            success: function (data) {
+                return data;
+            }
+        })
 
     });
 </script>
