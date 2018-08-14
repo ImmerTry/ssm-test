@@ -5,8 +5,10 @@ import com.ssm.maven.core.pojo.Picture;
 import com.ssm.maven.core.service.PictureService;
 import com.ssm.maven.core.util.LayuiRtn;
 import com.ssm.maven.core.util.Pager;
+import com.ssm.maven.core.util.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,7 +22,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/picture")
+@RequestMapping("picture")
 public class PictureController {
 
     @Resource
@@ -34,11 +36,12 @@ public class PictureController {
      * @param picturePath
      * @return
      */
-    @RequestMapping("/save")
+    @RequestMapping("save")
     @ResponseBody
     public Map<String, Object> savePictureInfo(String itemId, int classId, String picturePath) {
         Map<String, Object> map = new HashMap<>();
         Picture picture = new Picture(itemId, picturePath, classId);
+
         int count = 0;
         // picture.setItemId(itemId);
         // picture.setClassId(classId);
@@ -64,7 +67,7 @@ public class PictureController {
      * @param request
      * @return
      */
-    @RequestMapping("/upload")
+    @RequestMapping("upload")
     @ResponseBody
     public Object savePicture(MultipartFile file, HttpServletRequest request) {
         String desFilePath = "";
@@ -81,21 +84,20 @@ public class PictureController {
             // 4.获取要保存的路径文件夹
             // System.out.println(request.getSession().getServletContext().getRealPath(""));
             String realPath = request.getSession().getServletContext().getRealPath("upload");
-            File rel = new File(realPath,newName);
+            File rel = new File(realPath, newName);
             if (!rel.exists() && !rel.isDirectory()) {
                 rel.mkdirs();
             }
             // 5.保存图片
             file.transferTo(rel);
-            System.out.println(desFilePath);
             // 6.返回保存结果信息
             dataMap.put("src", "upload/" + newName);
             return new LayuiRtn(0, oriName + "上传成功！", 0, dataMap);
         } catch (IllegalStateException e) {
-            System.out.println(desFilePath + "图片保存失败");
+            System.out.println("图片保存失败");
             return new LayuiRtn(1);
         } catch (IOException e) {
-            System.out.println(desFilePath + "图片保存失败--IO异常");
+            System.out.println("图片保存失败--IO异常");
             return new LayuiRtn(1);
         }
     }
@@ -106,7 +108,7 @@ public class PictureController {
      * @param page
      * @return
      */
-    @RequestMapping("/show")
+    @RequestMapping("show")
     @ResponseBody
     public Object showPicture(Pager page) {
 
@@ -121,15 +123,15 @@ public class PictureController {
     /**
      * 单个删除
      *
-     * @param itemId
+     * @param pictureId
      * @return
      */
     @RequestMapping("delete")
     @ResponseBody
-    public Map<String, Object> deletePicture(String itemId) {
+    public Map<String, Object> deletePicture(int pictureId) {
         Map<String, Object> map = new HashMap<>();
 
-        int count = pictureService.deletePicture(itemId);
+        int count = pictureService.deletePicture(pictureId);
         if (count > 0) {
             map.put("success", true);
         } else {
@@ -151,10 +153,10 @@ public class PictureController {
         Map<String, Object> map = new HashMap<>();
         int count = 0;
         String[] arr = str.split(",");
-        String itemId = null;
+        int pictureid = 0;
         for (int i = 0; i < arr.length; i++) {
-            itemId = arr[i];
-            count = pictureService.deletePicture(itemId);
+            pictureid = Integer.parseInt(arr[i]);
+            count = pictureService.deletePicture(pictureid);
         }
         if (count > 0) {
             map.put("success", true);
@@ -164,8 +166,13 @@ public class PictureController {
         return map;
     }
 
+    /**
+     * 查询图片路径（pass）
+     *
+     * @return
+     */
 
-    @RequestMapping("/selectPic")
+    @RequestMapping("selectPic")
     @ResponseBody
     public Map<String, Object> selectPic() {
         Map<String, Object> map = new HashMap<>();
@@ -175,8 +182,27 @@ public class PictureController {
         for (int i = 0; i < list.size(); i++) {
             picture = (Picture) list.get(i);
             path = picture.getPicturePath().split(",");
-            map.put("path",path[0]);
+            map.put("path", path[0]);
         }
         return map;
     }
+
+    @RequestMapping("update")
+    @ResponseBody
+    public Map<String, Object> savePath(String picturePath,String itemId) {
+        Map<String, Object> map = new HashMap<>();
+        Picture picture = new Picture(itemId,picturePath);
+        int count = pictureService.updatePicture(picture);
+        if (count > 0) {
+            map.put("success",true);
+        } else {
+            map.put("success",false);
+        }
+        return map;
+    }
+
+
+
+
+
 }

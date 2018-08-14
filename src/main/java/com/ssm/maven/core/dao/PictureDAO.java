@@ -28,10 +28,10 @@ public interface PictureDAO {
     /**
      * 删除图片
      *
-     * @param itemId
+     * @param pictureId
      * @return
      */
-    int deletePicture(@Param("itemId") String itemId);
+    int deletePicture(@Param("pictureId") int pictureId);
 
     /**
      * 修改图片信息

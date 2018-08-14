@@ -4,14 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.maven.core.dao.PictureDAO">
     <resultMap id="PictureResult" type="Picture">
+        <id property="pictureId" column="pictureid"/>
         <id property="itemId" column="itemid"/>
         <result property="picturePath" column="picturepath"/>
+        <result property="itemName" column="itemname"/>
         <result property="classId" column="classid"/>
     </resultMap>
-    <insert id="savePicture">
-        insert
-        into t_picture(itemid,picturepath,classid)
-        values (#{picture.itemId},#{picture.picturePath},#{picture.classId})
+    <insert id="savePicture" parameterType="Picture">
+        insert into t_picture
+        (itemid,picturepath,classid)
+        values
+        (#{picture.itemId},#{picture.picturePath},#{picture.classId})
+
     </insert>
     <update id="updatePicture">
         update t_picture
@@ -20,7 +24,7 @@
     </update>
     <delete id="deletePicture">
         delete from t_picture
-        where itemid=#{itemId}
+        where pictureid=#{pictureId}
     </delete>
     <select id="getPictureList" resultType="Picture">
         select *

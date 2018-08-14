@@ -26,10 +26,10 @@ public interface PictureService {
     /**
      * 删除图片
      *
-     * @param itemId
+     * @param pictureId
      * @return
      */
-    int deletePicture(String itemId);
+    int deletePicture(int pictureId);
 
     /**
      * 修改图片信息

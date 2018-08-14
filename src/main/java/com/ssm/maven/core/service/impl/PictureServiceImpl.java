@@ -27,8 +27,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public int deletePicture(String itemId) {
-        return pictureDAO.deletePicture(itemId);
+    public int deletePicture(int pictureId) {
+        return pictureDAO.deletePicture(pictureId);
     }
 
     @Override

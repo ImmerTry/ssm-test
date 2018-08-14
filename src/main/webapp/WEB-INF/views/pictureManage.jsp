@@ -11,6 +11,13 @@
 <head>
     <title>图片管理</title>
     <link rel="stylesheet" href="../../statics/layui/css/layui.css">
+    <style>
+        .laytable-cell-1-picturePath {
+            height: 100px;
+            line-height: 100px;
+            width: 220px;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-container">
@@ -29,44 +36,71 @@
     <div class="layui-row">
         <table id="pictureTable" lay-filter="pictureTable"></table>
     </div>
-    <form class="layui-form" id="pictureModal" style="display: none;">
-        <div class="layui-form-item">
-            <label class="layui-form-label">商品ID：</label>
-            <div class="layui-input-block">
-                <input type="text" name="itemId" id="itemId" placeholder="商品ID" autocomplete="off" class="layui-input">
+    <div class="layui-row">
+
+        <form class="layui-form" id="pictureModal" style="display: none;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品ID：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="itemId" id="itemId" placeholder="商品ID" autocomplete="off"
+                           class="layui-input">
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">分类ID</label>
-            <div class="layui-input-block">
-                <select name="classId" id="claSelect" lay-filter="claSelect">
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类ID</label>
+                <div class="layui-input-block">
+                    <select name="classId" id="claSelect" lay-filter="claSelect">
+                    </select>
+                </div>
             </div>
-        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">图片上传：</label>
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn upload" id="upload">
+                        <i class="layui-icon">&#xe67c;</i>选择图片（最多选择5张，单张图片最大为1M）
+                    </button>
+                    <button type="button" class="layui-btn uploadBtn" id="uploadBtn">开始上传</button>
+                    <button type="button" class="layui-btn cleanImgs" id=""><i class="fa fa-trash-o fa-lg"></i>清空图片预览
+                    </button>
+                </div>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                    预览图：
+                    <div class="layui-upload-list preview" id="preview"></div>
+                </blockquote>
+            </div>
+            <input type="text" id="imgUrls" name="imgUrls" style="display: none;" class="layui-input imgUrls">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="addPicture" id="addPicture">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--编辑图片上传-->
+    <div class="layui-row" id="editPictureModal" style="display: none">
         <div class="layui-form-item">
             <label class="layui-form-label">图片上传：</label>
             <div class="layui-input-block">
-                <button type="button" class="layui-btn" id="upload">
+                <button type="button" class="layui-btn upload" id="editUpload">
                     <i class="layui-icon">&#xe67c;</i>选择图片（最多选择5张，单张图片最大为1M）
                 </button>
-                <button type="button" class="layui-btn" id="uploadBtn">开始上传</button>
-                <button type="button" class="layui-btn" id="cleanImgs"><i class="fa fa-trash-o fa-lg"></i>清空图片预览
+                <button type="button" class="layui-btn uploadBtn" id="editUploadBtn">开始上传</button>
+                <button type="button" class="layui-btn cleanImgs"><i class="fa fa-trash-o fa-lg"></i>清空图片预览
                 </button>
             </div>
             <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
                 预览图：
-                <div class="layui-upload-list" id="preview"></div>
+                <div class="layui-upload-list preview" id="editPreview"></div>
             </blockquote>
         </div>
-        <input type="text" id="imgUrls" name="imgUrls" style="display: none;" class="layui-input">
+        <input type="text" id="editImgUrls" name="imgUrls" style="display: none;" class="layui-input imgUrls">
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="addPicture" id="addPicture">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <button class="layui-btn" lay-submit lay-filter="editPicture" id="editPicture">添加</button>
             </div>
         </div>
-    </form>
-
+    </div>
 </div>
 
 <script type="text/html" id="barDemo">
@@ -76,10 +110,10 @@
 </script>
 <script src="../../statics/js/jquery-3.3.1.min.js"></script>
 <script type="text/html" id="picture">
-    {{# if(d.picturePath!=""){   }}
-            <img src="${ctx}/{{d.picturePath.split(',')[0]}}"/>
+    {{# if(d.picturePath!="" && d.picturePath!=null){   }}
+    <a><img src="${ctx}/{{d.picturePath.split(',')[0]}}"/></a>
     {{# }else{   }}
-    没有图片
+    <em>No pictures</em>
     {{#  }  }}
 </script>
 <script src="../../statics/layui/layui.js"></script>
@@ -96,7 +130,7 @@
          */
         table.render({
             elem: '#pictureTable'
-             , height: 315
+            // , height: 315
             , url: '/picture/show.action' //数据接口
             , page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
                 layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'] //自定义分页布局
@@ -111,7 +145,7 @@
             , cols: [[ //表头
                 {type: 'checkbox'}
                 , {field: 'itemId', title: '商品ID', sort: true}
-                , {field: 'picturePath', title: '封面', width: 200, templet: '#picture'}
+                , {field: 'picturePath', title: '封面', align: 'center', width: 200, templet: '#picture'}
                 , {field: 'itemName', width: 150, title: '图片名称'}
                 , {field: 'picturePath', width: 200, title: '图片地址'}
                 , {field: 'classId', align: 'center', title: '分类ID', sort: true}
@@ -127,11 +161,11 @@
             getCheckData: function () { //获取选中数据
                 var checkStatus = table.checkStatus('idTest')
                     , data = checkStatus.data;
-                // layer.alert(JSON.stringify(data));
+                // console.log(JSON.stringify(data));
                 var str = "";
                 if (data.length > 0) {
                     for (var i = 0; i < data.length; i++) {
-                        str += data[i].itemId + ",";
+                        str += data[i].pictureId + ",";
                     }
                     layer.confirm('确定删除' + data.length + '条选中的信息？', {
                         icon: 3,
@@ -197,7 +231,7 @@
 
                     $.ajax({
                         url: '/picture/delete.action'
-                        , data: {"itemId": data.itemId}
+                        , data: {"pictureId": data.pictureId}
                         , type: 'post'
                         , dataType: 'json'
                         , success: function (data) {
@@ -212,13 +246,52 @@
                     });
                 });
             } else if (layEvent === 'edit') { //编辑
+                var itemId = data.itemId;
                 //do something
-
-                //同步更新缓存对应的值
-                obj.update({
-                    username: '123'
-                    , title: 'xxx'
+                layer.open({
+                    type: 1,
+                    area: ['900px', '400px'],
+                    title: "图片上传",
+                    content: $("#editPictureModal")
                 });
+                /**
+                 * 编辑图片保存
+                 */
+                $("#editPicture").on('click', function (data) {
+                    // var pictureInfo = data.field;
+                    // console.log(pictureInfo);
+                    var imgUrls = $(".imgUrls").val();
+                    $.ajax({
+                        type: "POST",
+                        url: '/picture/update.action',
+                        data: {
+                            itemId: itemId,
+                            picturePath: imgUrls
+                        },
+                        success: function (data) {
+                            if (data.success) {
+                                layer.msg('编辑成功!', {
+                                    icon: 1,
+                                    time: 1000,
+                                    end: function () {
+                                        window.location.reload();
+                                    }
+                                });
+                            } else {
+                                layer.msg('编辑失败!', {
+                                    icon: 2,
+                                    time: 1000,
+                                    end: function () {
+                                        window.location.reload();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+
             }
         });
 
@@ -229,7 +302,7 @@
 
             layer.open({
                 type: 1,
-                area: ['800px', '500px'],
+                area: ['900px', '500px'],
                 title: "图片上传",
                 content: $("#pictureModal")
             });
@@ -255,17 +328,17 @@
             , fail = 0
             , imgurls = "";
         upload.render({
-            elem: '#upload'
+            elem: '.upload'
             , url: '/picture/upload.action'
             , multiple: true    //支持多文件上传
             , auto: false //选择文件后不自动上传
             , field: 'file'
             , size: 1024  //上传图片大小
             , number: 5   //最多上传数量
-            , bindAction: "#uploadBtn" //指向一个按钮触发上传
+            , bindAction: ".uploadBtn" //指向一个按钮触发上传
             , before: function (obj) {
                 obj.preview(function (index, file, result) {
-                    $('#preview').append('<img src="' + result
+                    $('.preview').append('<img src="' + result
                         + '" alt="' + file.name
                         + '"height="92px" width="92px" class="layui-upload-img uploadImgPreView">')
                     //这里还可以做一些 append 文件列表 DOM 的操作
@@ -284,11 +357,9 @@
                 } else {    //上传成功
                     success++;
                     imgurls = imgurls + "" + res.data.src + ",";
-                    $('#imgUrls').val(imgurls);
+                    $('.imgUrls').val(imgurls);
                 }
-
-                //打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台, 此处略..
-                // layer.msg('上传成功');
+                //打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台
             }
             , allDone: function (obj) {
                 layer.msg("总共要上传图片总数为：" + (fail + success) + "\n"
@@ -303,18 +374,18 @@
          * 原因：如果已经存在预览的图片的话，再次点击上选择图片时，预览图片会不断累加
          * 表面上做上传成功的个数清0
          */
-        $("#cleanImgs").click(function () {
+        $(".cleanImgs").on('click', function () {
             success = 0;
             fail = 0;
-            $('#preview').html("");
-            $('#imgUrls').val("");
+            $('.preview').html("");
+            $('.imgUrls').val("");
         });
         /**
          * 图片上传保存
          */
         form.on('submit(addPicture)', function (data) {
             var pictureInfo = data.field;
-            console.log(pictureInfo);
+            // console.log(pictureInfo);
             var itemId = $("#itemId").val()
                 , classId = $("#claSelect").val()
                 , imgUrls = $("#imgUrls").val();
@@ -324,30 +395,30 @@
                 data: {
                     itemId: itemId,
                     classId: classId,
-                    picturePath: imgUrls,
+                    picturePath: imgUrls
                 },
                 success: function (data) {
                     if (data.success) {
-                        layer.alert("保存成功");
+                        layer.msg('添加成功!', {
+                            icon: 1,
+                            time: 1000,
+                            end: function () {
+                                window.location.reload();
+                            }
+                        });
                     } else {
-                        layer.alert("保存失败");
+                        layer.msg('添加失败!', {
+                            icon: 2,
+                            time: 1000,
+                            end: function () {
+                                window.location.reload();
+                            }
+                        });
                     }
                 }
             });
             return false;
         });
-
-        /**
-         * 获取图片路径
-         */
-        $.ajax({
-            type: "POST",
-            url: '/picture/selectPic.action',
-            // data:{itemId : itemId},
-            success: function (data) {
-                return data;
-            }
-        })
 
     });
 </script>
