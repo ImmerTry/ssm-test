@@ -184,7 +184,7 @@
             $.each(claList, function (index, cla) {
                 className = cla.className;
                 // alert(className);
-                $(".show_item").append(className);
+                $(".show_item")[index].append(className);
             });
 
         }
