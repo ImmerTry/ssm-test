@@ -23,7 +23,7 @@ public class ClassificationController {
     private ClassificationService claService;
 
 
-    @RequestMapping("show")
+    @RequestMapping("/show")
     @ResponseBody
     public Map<String, Object> showCla() {
         Map<String, Object> map = new HashMap<>();
@@ -43,7 +43,7 @@ public class ClassificationController {
         return map;
     }
 
-    @RequestMapping("edit")
+    @RequestMapping("/edit")
     @ResponseBody
     public Map<String, Object> editClassification(Classification cla) {
 
@@ -73,7 +73,7 @@ public class ClassificationController {
         return map;
     }
 
-    @RequestMapping("delete")
+    @RequestMapping("/delete")
     @ResponseBody
     public Map<String, Object> deleteClassification(Classification cla) {
 
@@ -89,14 +89,14 @@ public class ClassificationController {
         return map;
     }
 
-    @RequestMapping("getClaById")
+    @RequestMapping("/getClaById")
     @ResponseBody
     public Classification getClaById(int classId) {
         Classification classification = claService.getClaById(classId);
         return classification;
     }
 
-    @RequestMapping("getPage")
+    @RequestMapping("/getPage")
     @ResponseBody
     public PageInfo<Map<String, Object>> getPage(@RequestParam Map condition) {
 

@@ -35,7 +35,7 @@
         <div class="nav_item_fruit">
             <div class="item_head">
                 <div class="item_title">
-                    <a class="show_item" href="/page/showFruit.action">新鲜水果
+                    <a class="show_item" id="fruit" href="/item/showFruit.action?classId=1">
                         <span>></span></a>
                 </div>
                 <ul class="fruit_menu">
@@ -57,7 +57,7 @@
         <div class="nav_item_seafood">
             <div class="item_head">
                 <div class="item_title">
-                    <a class="show_item" href="#">海鲜水产
+                    <a class="show_item" id="seafood" href="#">
                         <span>></span></a>
                 </div>
                 <ul class="seafood_menu">
@@ -79,7 +79,7 @@
         <div class="nav_item_meat">
             <div class="item_head">
                 <div class="item_title">
-                    <a class="show_item" href="#">精选肉类
+                    <a class="show_item" id="meat" href="#">
                         <span>></span></a>
                 </div>
                 <ul class="meat_menu">
@@ -101,7 +101,7 @@
         <div class="nav_item_freezing">
             <div class="item_head">
                 <div class="item_title">
-                    <a class="show_item" href="#">冷饮冻食
+                    <a class="show_item" id="freezing" href="#">
                         <span>></span></a>
                 </div>
                 <ul class="freezing_menu">
@@ -123,7 +123,7 @@
         <div class="nav_item_vegetables">
             <div class="item_head">
                 <div class="item_title">
-                    <a class="show_item" href="#">蔬菜蛋品
+                    <a class="show_item" id="vegetables" href="#">
                         <span>></span></a>
                 </div>
                 <ul class="vegetables_menu">
@@ -173,5 +173,22 @@
 <script src="statics/js/bootstrap.js"></script>
 <script src="statics/layui/layui.js"></script>
 <script src="statics/js/index.js"></script>
+<script>
+    $.ajax({
+        url: '/cla/show.action',
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            var claList = data.claLists;
+            var className;
+            $.each(claList, function (index, cla) {
+                className = cla.className;
+                // alert(className);
+                $(".show_item").append(className);
+            });
+
+        }
+    })
+</script>
 </body>
 </html>

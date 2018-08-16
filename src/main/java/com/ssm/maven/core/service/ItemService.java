@@ -10,7 +10,7 @@ public interface ItemService {
      * 查询所有信息
      * @return
      */
-    List<Item> getItemList();
+    List<Item> getItemList(int classId);
 
     /**
      * 添加商品

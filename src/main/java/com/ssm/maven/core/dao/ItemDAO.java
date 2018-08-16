@@ -13,7 +13,7 @@ public interface ItemDAO {
      * 显示所有商品信息
      * @return
      */
-    List<Item> getItemList();
+    List<Item> getItemList(int classId);
 
     /**
      * 添加商品

@@ -22,13 +22,13 @@
                     <div class="item_picture">
                         <a href="#"
                            title="长在树上的“矿泉水”  两粒尝鲜装】自营团队泰国“定制”优质产地 ，附带开椰器和吸管【苛求新鲜美味 我们不一样】只挑“适龄椰青”，汁更香甜肉更细嫩，清晨采摘急速冷藏只为更鲜！自营泰国金枕榴莲卖爆了！">
-                            <img src="images/1.jpg">
+                            <img src="">
                         </a>
                     </div>
                     <div class="item_price">
                         <strong>
                             <em>￥</em>
-                            <i>20</i>
+                            <i></i>
                         </strong>
                     </div>
                     <div class="item_pname">

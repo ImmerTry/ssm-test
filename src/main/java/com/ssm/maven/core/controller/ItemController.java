@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,12 @@ public class ItemController {
     @Resource
     private ItemService itemService;
 
+    /**
+     * layui table填充
+     *
+     * @param page
+     * @return
+     */
     @RequestMapping("/show")
     @ResponseBody
     public Object showItemList(Pager page) {
@@ -54,7 +61,13 @@ public class ItemController {
         return map;
     }
 
-    @RequestMapping("delete")
+    /**
+     * 删除单个商品
+     *
+     * @param itemId
+     * @return
+     */
+    @RequestMapping("/delete")
     @ResponseBody
     public Map<String, Object> deleteItem(String itemId) {
 
@@ -69,7 +82,13 @@ public class ItemController {
         return map;
     }
 
-    @RequestMapping("deleteItemInfo")
+    /**
+     * 删除商品
+     *
+     * @param str
+     * @return
+     */
+    @RequestMapping("/deleteItemInfo")
     @ResponseBody
     public Map<String, Object> deleteItemInfo(String str) {
 
@@ -89,8 +108,13 @@ public class ItemController {
         return map;
     }
 
-
-    @RequestMapping("update")
+    /**
+     * 更新商品
+     *
+     * @param item
+     * @return
+     */
+    @RequestMapping("/update")
     @ResponseBody
     public Map<String, Object> updateItem(Item item) {
         Map<String, Object> map = new HashMap<>();
@@ -103,7 +127,7 @@ public class ItemController {
         return map;
     }
 
-    @RequestMapping("selectItem")
+    @RequestMapping("/selectItem")
     @ResponseBody
     public Map<String, Object> selectItem(String itemId) {
         Map<String, Object> map = new HashMap<>();
@@ -145,4 +169,16 @@ public class ItemController {
         PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(pageInfoByCondition);
         return pageInfo;
     }
+
+    @RequestMapping("/showFruit/{classId}")
+    @ResponseBody
+    public Map<String,Object> showFruit(int classId, HttpServletRequest request) {
+
+        List<Item> itemList = itemService.getItemList(classId);
+        request.getSession().setAttribute("itemList",itemList);
+
+        return null;
+    }
+
+
 }

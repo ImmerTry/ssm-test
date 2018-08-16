@@ -16,8 +16,8 @@ public class ItemServiceImpl implements ItemService {
     @Resource
     private ItemDAO itemDAO;
     @Override
-    public List<Item> getItemList() {
-        return itemDAO.getItemList();
+    public List<Item> getItemList(int classId) {
+        return itemDAO.getItemList(classId);
     }
 
     @Override

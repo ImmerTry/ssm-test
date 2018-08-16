@@ -14,7 +14,7 @@
     </resultMap>
     <select id="getItemList" resultMap="ItemResult">
         select *
-        from t_item
+        from t_item where classid=#{classId}
     </select>
     <insert id="saveItem">
         insert into

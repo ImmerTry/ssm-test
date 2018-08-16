@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("picture")
+@RequestMapping("/picture")
 public class PictureController {
 
     @Resource
@@ -36,7 +36,7 @@ public class PictureController {
      * @param picturePath
      * @return
      */
-    @RequestMapping("save")
+    @RequestMapping("/save")
     @ResponseBody
     public Map<String, Object> savePictureInfo(String itemId, int classId, String picturePath) {
         Map<String, Object> map = new HashMap<>();
@@ -67,7 +67,7 @@ public class PictureController {
      * @param request
      * @return
      */
-    @RequestMapping("upload")
+    @RequestMapping("/upload")
     @ResponseBody
     public Object savePicture(MultipartFile file, HttpServletRequest request) {
         String desFilePath = "";
@@ -108,7 +108,7 @@ public class PictureController {
      * @param page
      * @return
      */
-    @RequestMapping("show")
+    @RequestMapping("/show")
     @ResponseBody
     public Object showPicture(Pager page) {
 
@@ -126,7 +126,7 @@ public class PictureController {
      * @param pictureId
      * @return
      */
-    @RequestMapping("delete")
+    @RequestMapping("/delete")
     @ResponseBody
     public Map<String, Object> deletePicture(int pictureId) {
         Map<String, Object> map = new HashMap<>();
@@ -146,7 +146,7 @@ public class PictureController {
      * @param str
      * @return
      */
-    @RequestMapping("deletePictureInfo")
+    @RequestMapping("/deletePictureInfo")
     @ResponseBody
     public Map<String, Object> deleteItemInfo(String str) {
 
@@ -172,7 +172,7 @@ public class PictureController {
      * @return
      */
 
-    @RequestMapping("selectPic")
+    @RequestMapping("/selectPic")
     @ResponseBody
     public Map<String, Object> selectPic() {
         Map<String, Object> map = new HashMap<>();
@@ -187,7 +187,7 @@ public class PictureController {
         return map;
     }
 
-    @RequestMapping("update")
+    @RequestMapping("/update")
     @ResponseBody
     public Map<String, Object> savePath(String picturePath,String itemId) {
         Map<String, Object> map = new HashMap<>();

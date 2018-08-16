@@ -65,7 +65,7 @@ public class UserController {
     }
 
     //
-    @RequestMapping("out")
+    @RequestMapping("/out")
     public String out(HttpServletRequest request) {
         request.getSession().removeAttribute("currUser");
         return "redirect:/";
