@@ -170,7 +170,7 @@ public class ItemController {
         return pageInfo;
     }
 
-    @RequestMapping("/showFruit/{classId}")
+    @RequestMapping("/showFruit/")
     @ResponseBody
     public Map<String,Object> showFruit(int classId, HttpServletRequest request) {
 
