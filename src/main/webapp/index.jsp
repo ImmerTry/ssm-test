@@ -181,7 +181,7 @@
                         + cla.className
                         + "<span>></span>"
                         + "</a>";
-                    $(".item_title")[index].append(str);
+                   $(".item_title")[index].innerHTML=str;
                     // $(".item_title").html(str);
                 });
 
