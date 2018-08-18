@@ -174,15 +174,13 @@ public class PictureController {
 
     @RequestMapping("/selectPic")
     @ResponseBody
-    public Map<String, Object> selectPic() {
+    public Map<String, Object> selectPic(@RequestParam("itemId")String itemId) {
         Map<String, Object> map = new HashMap<>();
-        Picture picture;
-        List list = pictureService.getPictureList();
-        String[] path = null;
-        for (int i = 0; i < list.size(); i++) {
-            picture = (Picture) list.get(i);
-            path = picture.getPicturePath().split(",");
-            map.put("path", path[0]);
+        Picture picture = pictureService.getPictureByItemId(itemId);
+        if (picture != null) {
+            map.put("picture",picture);
+        } else {
+            map.put("msg",false);
         }
         return map;
     }

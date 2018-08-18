@@ -177,12 +177,11 @@
                 var claList = data.claLists;
 
                 $.each(claList, function (index, cla) {
-                    var str = "<a class='show_item' href='/item/showFruit.action?classId=" + cla.classId + "'>"
+                    var str = "<a class='show_item' target='_blank' href='/item/showFruit.action?classId=" + cla.classId + "'>"
                         + cla.className
                         + "<span>></span>"
                         + "</a>";
                    $(".item_title")[index].innerHTML=str;
-                    // $(".item_title").html(str);
                 });
 
             }

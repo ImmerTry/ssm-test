@@ -7,6 +7,7 @@ import com.ssm.maven.core.util.LayuiRtn;
 import com.ssm.maven.core.util.Pager;
 import com.ssm.maven.core.util.StringUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -170,14 +171,25 @@ public class ItemController {
         return pageInfo;
     }
 
-    @RequestMapping("/showFruit/")
-    @ResponseBody
-    public Map<String,Object> showFruit(int classId, HttpServletRequest request) {
-
+    @RequestMapping("/showFruit.**")
+    public String showFruit(@RequestParam("classId") int classId, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
         List<Item> itemList = itemService.getItemList(classId);
-        request.getSession().setAttribute("itemList",itemList);
+        request.getSession().setAttribute("itemList", itemList);
 
-        return null;
+//        map.put("itemList",itemList);
+
+        return "redirect:/fruit.jsp";
+    }
+
+
+    @RequestMapping("/detail.**")
+    public String detail(@RequestParam("itemId") String itemId,HttpServletRequest request) {
+
+        Item item = itemService.findItemById(itemId);
+
+        request.getSession().setAttribute("item",item);
+        return "redirect:/detail.jsp";
     }
 
 
