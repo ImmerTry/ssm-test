@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>京东生鲜</title>
+    <title>生鲜</title>
     <link rel="stylesheet" href="statics/css/bootstrap.css">
     <link rel="stylesheet" href="statics/layui/css/layui.css">
     <link rel="stylesheet" href="statics/css/index.css">
@@ -30,7 +30,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="nav_left_title">京东生鲜商品分类</div>
+    <div class="nav_left_title">生鲜商品分类</div>
     <div class="nav_left">
         <div class="nav_item_fruit">
             <div class="item_head">
