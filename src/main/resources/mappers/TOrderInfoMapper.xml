@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.TOrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.maven.core.pojo.TOrderInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="itemid" jdbcType="VARCHAR" property="itemid" />
+    <result column="orederid" jdbcType="VARCHAR" property="orederid" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="itemname" jdbcType="VARCHAR" property="itemname" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="picturepath" jdbcType="VARCHAR" property="picturepath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, itemid, orederid, count, itemname, price, amount, picturepath
+  </sql>
+  <select id="selectByExample" parameterType="com.ssm.maven.core.pojo.TOrderInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_order_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.maven.core.pojo.TOrderInfoExample">
+    delete from t_order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.maven.core.pojo.TOrderInfo">
+    insert into t_order_info (id, itemid, orederid, 
+      count, itemname, price, 
+      amount, picturepath)
+    values (#{id,jdbcType=VARCHAR}, #{itemid,jdbcType=VARCHAR}, #{orederid,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{itemname,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, 
+      #{amount,jdbcType=BIGINT}, #{picturepath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.maven.core.pojo.TOrderInfo">
+    insert into t_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemid != null">
+        itemid,
+      </if>
+      <if test="orederid != null">
+        orederid,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="itemname != null">
+        itemname,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="picturepath != null">
+        picturepath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=VARCHAR},
+      </if>
+      <if test="orederid != null">
+        #{orederid,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="itemname != null">
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="picturepath != null">
+        #{picturepath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.maven.core.pojo.TOrderInfoExample" resultType="java.lang.Long">
+    select count(*) from t_order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_order_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemid != null">
+        itemid = #{record.itemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orederid != null">
+        orederid = #{record.orederid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null">
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemname != null">
+        itemname = #{record.itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.picturepath != null">
+        picturepath = #{record.picturepath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_order_info
+    set id = #{record.id,jdbcType=VARCHAR},
+      itemid = #{record.itemid,jdbcType=VARCHAR},
+      orederid = #{record.orederid,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      itemname = #{record.itemname,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=BIGINT},
+      picturepath = #{record.picturepath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.maven.core.pojo.TOrderInfo">
+    update t_order_info
+    <set>
+      <if test="itemid != null">
+        itemid = #{itemid,jdbcType=VARCHAR},
+      </if>
+      <if test="orederid != null">
+        orederid = #{orederid,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="itemname != null">
+        itemname = #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="picturepath != null">
+        picturepath = #{picturepath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.maven.core.pojo.TOrderInfo">
+    update t_order_info
+    set itemid = #{itemid,jdbcType=VARCHAR},
+      orederid = #{orederid,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      itemname = #{itemname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=BIGINT},
+      picturepath = #{picturepath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

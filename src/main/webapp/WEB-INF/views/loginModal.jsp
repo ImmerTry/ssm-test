@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>用户登陆</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../statics/css/bootstrap.min.css">
 </head>
 <body>
 <div class="modal show">
@@ -63,10 +63,10 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="../../statics/js/jquery-3.3.1.min.js"></script>
 <script>
     /*跳转注册页面*/
 </script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../statics/js/bootstrap.js"></script>
 </body>
 </html>

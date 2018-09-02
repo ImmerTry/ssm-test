@@ -30,8 +30,10 @@ public class PageRedirectController {
 
     @RequestMapping("/showFruit")
     public String showFruit(HttpServletRequest request) {
-
-        
         return "redirect:/fruit.jsp";
+    }
+    @RequestMapping("/test")
+    public String test(HttpServletRequest request) {
+        return "redirect:/test.html";
     }
 }

@@ -7,14 +7,12 @@
         <typeAlias type="com.ssm.maven.core.pojo.User" alias="User"/>
         <typeAlias type="com.ssm.maven.core.pojo.Item" alias="Item"/>
         <typeAlias type="com.ssm.maven.core.pojo.Classification" alias="Classification"/>
-        <typeAlias type="com.ssm.maven.core.pojo.Cart" alias="Cart"/>
         <typeAlias type="com.ssm.maven.core.pojo.Picture" alias="Picture"/>
     </typeAliases>
     <mappers>
         <mapper resource="mappers/UserMapper.xml"/>
         <mapper resource="mappers/ItemMapper.xml"/>
         <mapper resource="mappers/ClassificationMapper.xml"/>
-        <mapper resource="mappers/CartMapper.xml"/>
         <mapper resource="mappers/PictureMapper.xml"/>
     </mappers>
 </configuration>

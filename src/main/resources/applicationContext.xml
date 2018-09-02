@@ -46,6 +46,8 @@
         <property name="basePackage" value="com.ssm.maven.core.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+
+
     <!--事务管理-->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

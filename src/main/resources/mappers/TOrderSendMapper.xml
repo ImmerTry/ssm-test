@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.maven.core.dao.TOrderSendMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.maven.core.pojo.TOrderSend">
+    <id column="orderid" jdbcType="VARCHAR" property="orderid" />
+    <result column="sendname" jdbcType="VARCHAR" property="sendname" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phoneno" jdbcType="INTEGER" property="phoneno" />
+    <result column="province" jdbcType="CHAR" property="province" />
+    <result column="city" jdbcType="CHAR" property="city" />
+    <result column="region" jdbcType="CHAR" property="region" />
+    <result column="detailed" jdbcType="VARCHAR" property="detailed" />
+    <result column="postalcode" jdbcType="INTEGER" property="postalcode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    orderid, sendname, address, phoneno, province, city, region, detailed, postalcode
+  </sql>
+  <select id="selectByExample" parameterType="com.ssm.maven.core.pojo.TOrderSendExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_order_send
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_send
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_order_send
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.maven.core.pojo.TOrderSendExample">
+    delete from t_order_send
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.maven.core.pojo.TOrderSend">
+    insert into t_order_send (orderid, sendname, address, 
+      phoneno, province, city, 
+      region, detailed, postalcode
+      )
+    values (#{orderid,jdbcType=VARCHAR}, #{sendname,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{phoneno,jdbcType=INTEGER}, #{province,jdbcType=CHAR}, #{city,jdbcType=CHAR}, 
+      #{region,jdbcType=CHAR}, #{detailed,jdbcType=VARCHAR}, #{postalcode,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.maven.core.pojo.TOrderSend">
+    insert into t_order_send
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="sendname != null">
+        sendname,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phoneno != null">
+        phoneno,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="detailed != null">
+        detailed,
+      </if>
+      <if test="postalcode != null">
+        postalcode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendname != null">
+        #{sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=CHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=CHAR},
+      </if>
+      <if test="detailed != null">
+        #{detailed,jdbcType=VARCHAR},
+      </if>
+      <if test="postalcode != null">
+        #{postalcode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.maven.core.pojo.TOrderSendExample" resultType="java.lang.Long">
+    select count(*) from t_order_send
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_order_send
+    <set>
+      <if test="record.orderid != null">
+        orderid = #{record.orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendname != null">
+        sendname = #{record.sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneno != null">
+        phoneno = #{record.phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=CHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=CHAR},
+      </if>
+      <if test="record.region != null">
+        region = #{record.region,jdbcType=CHAR},
+      </if>
+      <if test="record.detailed != null">
+        detailed = #{record.detailed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postalcode != null">
+        postalcode = #{record.postalcode,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_order_send
+    set orderid = #{record.orderid,jdbcType=VARCHAR},
+      sendname = #{record.sendname,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      phoneno = #{record.phoneno,jdbcType=INTEGER},
+      province = #{record.province,jdbcType=CHAR},
+      city = #{record.city,jdbcType=CHAR},
+      region = #{record.region,jdbcType=CHAR},
+      detailed = #{record.detailed,jdbcType=VARCHAR},
+      postalcode = #{record.postalcode,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.maven.core.pojo.TOrderSend">
+    update t_order_send
+    <set>
+      <if test="sendname != null">
+        sendname = #{sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        phoneno = #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=CHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=CHAR},
+      </if>
+      <if test="detailed != null">
+        detailed = #{detailed,jdbcType=VARCHAR},
+      </if>
+      <if test="postalcode != null">
+        postalcode = #{postalcode,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.maven.core.pojo.TOrderSend">
+    update t_order_send
+    set sendname = #{sendname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phoneno = #{phoneno,jdbcType=INTEGER},
+      province = #{province,jdbcType=CHAR},
+      city = #{city,jdbcType=CHAR},
+      region = #{region,jdbcType=CHAR},
+      detailed = #{detailed,jdbcType=VARCHAR},
+      postalcode = #{postalcode,jdbcType=INTEGER}
+    where orderid = #{orderid,jdbcType=VARCHAR}
+  </update>
+</mapper>

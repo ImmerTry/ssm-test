@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>产品管理</title>
     <link rel="stylesheet" href="../../statics/css/iconfont.css">
     <link rel="stylesheet" href="../../statics/css/bootstrap.css">

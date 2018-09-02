@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>商品详情页面</title>
@@ -64,11 +65,11 @@
         </div>
         <div class="itemInfo">
             <div class="sku-name">
-                越南进口红心火龙果 2个装 巨无霸大果 单果约600~700g 新鲜水果
+                ${item.remark}
             </div>
             <div class="news">
                 <div class="itemnews">
-                    【够大才过瘾 巨无霸满足你】红心果更甜，巨无霸果肉满满，享受饱满的甜蜜诱惑！富含抗氧化的花青素，护眼兼护肤，天然营养库！
+                    ${item.description}
                 </div>
             </div>
             <div class="summary summary-first">
@@ -78,7 +79,7 @@
                         <div class="dd">
                         <span class="p-price">
                             <span style="font-size: 16px;">￥</span>
-                            <span style="font-size: 22px;">36.90</span>
+                            <span style="font-size: 22px;">${item.price}</span>
                         </span>
                             <a class="notice" href="#none">降价通知</a>
                         </div>
@@ -188,7 +189,7 @@
                             <a class="add">+</a>
                         </div>
                         <div class="right">
-                            <button type="button">加入购物车</button>
+                            <button type="button" id="cart">加入购物车</button>
                         </div>
                     </div>
                 </div>
@@ -229,6 +230,11 @@
         }
         $(this).next().val(num);
     });
+    $('#cart').on('click',function () {
+        var count = $('.num').val();
+        alert(count);
+    })
+
 </script>
 
 </body>

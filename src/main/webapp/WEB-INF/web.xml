@@ -48,7 +48,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- 错误页面配置,这里只是简单的配置了一下 -->
+    <!-- 错误页面配置-->
     <!--<error-page>-->
         <!--<error-code>404</error-code>-->
         <!--<location>/WEB-INF/views/error.jsp</location>-->

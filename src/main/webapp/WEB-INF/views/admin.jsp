@@ -11,7 +11,7 @@
     <title>生鲜系统后台</title>
     <link rel="stylesheet" href="../../statics/css/side.css">
     <link rel="stylesheet" href="../../statics/css/iconfont.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../statics/css/bootstrap.min.css">
 </head>
 <body>
 <header>
@@ -129,7 +129,7 @@
         </div>
     </div>
 </section>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="../../statics/js/jquery-3.3.1.min.js"></script>
 <script>
     //左侧动态菜单下拉样式
     $(function () {
@@ -159,6 +159,6 @@
 </script>
 <!--左侧菜单动态下拉-->
 <script src="../../statics/js/dropdown.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../statics/js/bootstrap.js"></script>
 </body>
 </html>
