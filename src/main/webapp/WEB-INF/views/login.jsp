@@ -75,7 +75,7 @@
 </head>
 <body>
 <div class="banner">
-    <form class="layui-form" id="loginForm" method="post"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+    <form class="layui-form" id="loginForm" method="post" onsubmit="return false;"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
         <span id="error" class="error"></span>
         <div class="layui-form-item">
             <label class="layui-form-label">账号</label>
@@ -153,7 +153,7 @@
 
     };
     $(function () {
-        $("#login").on('click',function () {
+        $("#login").on('click', function () {
             LOGIN.login();
         });
     });

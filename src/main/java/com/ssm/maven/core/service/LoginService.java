@@ -25,4 +25,12 @@ public interface LoginService {
      * @return
      */
     JDResult getUserByToken(String token);
+
+    /**
+     * 用户退出
+     * @param request
+     * @param response
+     * @return
+     */
+    void logout(HttpServletRequest request,HttpServletResponse response);
 }

@@ -95,7 +95,7 @@
                         var username = data.data.loginid;
                         var html = "<em style='font-style: normal;color:#e4393c;font-size: 16px;'>"
                             + username + "</em>" + "&nbsp;&nbsp;"
-                            + "<a href=\"http://localhost:8080/users/logout.html\">退出</a>";
+                            + "<a href=\"javascript:logout()\">退出</a>";
                         $("#loginbar").html(html);
                     }
                 }
@@ -107,6 +107,19 @@
         // 查看是否已经登录，如果已经登录查询登录信息
         TT.checkLogin();
     });
+
+    function logout() {
+        $.ajax({
+            url: "http://localhost:8080/users/logout.action",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    $("#loginbar").html("");
+                    location.reload();
+                }
+            }
+        })
+    }
 </script>
 </body>
 </html>

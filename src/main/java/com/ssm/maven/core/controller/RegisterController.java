@@ -43,7 +43,7 @@ public class RegisterController {
             return result;
         } catch (Exception e) {
             e.printStackTrace();
-            return JDResult.build(500,ExceptionUtil.getStackTrace(e));
+            return JDResult.build(500, ExceptionUtil.getStackTrace(e));
         }
     }
 
@@ -62,7 +62,7 @@ public class RegisterController {
             return result;
         } catch (Exception e) {
             e.printStackTrace();
-            return JDResult.build(500,ExceptionUtil.getStackTrace(e));
+            return JDResult.build(500, ExceptionUtil.getStackTrace(e));
         }
     }
 
@@ -101,6 +101,25 @@ public class RegisterController {
         try {
             JDResult result = loginService.getUserByToken(token);
             return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JDResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+    }
+
+    /**
+     * 用户退出
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping("/logout")
+    @ResponseBody
+    public JDResult logout(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            loginService.logout(request, response);
+            return JDResult.ok();
         } catch (Exception e) {
             e.printStackTrace();
             return JDResult.build(500, ExceptionUtil.getStackTrace(e));

@@ -233,8 +233,15 @@
         $(this).next().val(num);
     });
     $('#cart').on('click', function () {
-        var count = $('.num').val();
-        alert(count);
+       $.ajax({
+           url:"/cart/add.action",
+           dataType:"json",
+           success:function (data) {
+               if (data.status == 200) {
+                   location.href = "/page/addCart.action";
+               }
+           }
+       })
     })
 
 </script>

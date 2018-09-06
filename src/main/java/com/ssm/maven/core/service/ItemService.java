@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface ItemService {
     /**
-     * 查询所有信息
+     * 查询分类信息
      * @return
      */
     List<Item> getItemList(int classId);

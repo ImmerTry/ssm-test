@@ -85,4 +85,11 @@ public class LoginServiceImpl implements LoginService {
 
         return JDResult.ok(user);
     }
+
+    @Override
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+
+        CookieUtils.deleteCookie(request,response,"LL_TOKEN");
+
+    }
 }
