@@ -7,40 +7,42 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>商品详情页面</title>
-    <link rel="stylesheet" href="statics/layui/css/layui.css">
-    <link rel="stylesheet" href="statics/css/product.css">
-    <link rel="stylesheet" href="statics/css/selector.css">
+    <link rel="stylesheet" href="../../statics/layui/css/layui.css">
+    <link rel="stylesheet" href="../../statics/css/product.css">
+    <link rel="stylesheet" href="../../statics/css/selector.css">
 </head>
 <body>
+<jsp:include page="top.jsp"/>
 <div class="w">
     <div class="product">
         <div class="img-warpper">
             <div class="preview">
                 <div id="spec-n1" class="jqzoom main-img" data-big="1">
-                    <img id=bigImg src="statics/img/big37.jpg" width=350 height=350
-                         jqimg="statics/img/big37.jpg">
+                    <img id=bigImg src="../../statics/img/big37.jpg" width=350 height=350
+                         jqimg="../../statics/img/big37.jpg">
                 </div>
                 <div id=spec>
                     <div id=specLeft class="control specLeftT"></div>
                     <div id=specList>
                         <ul class=listImg>
-                            <li><img src="statics/img/small37.jpg" src_H="statics/img/main37.jpg"
-                                     src_D="statics/img/big37.jpg">
+                            <li><img src="../../statics/img/small37.jpg" src_H="../../statics/img/main37.jpg"
+                                     src_D="../../statics/img/big37.jpg">
                             </li>
-                            <li><img src="statics/img/smalld8.jpg" src_H="statics/img/maind8.jpg"
-                                     src_D="statics/img/bigd8.jpg">
+                            <li><img src="../../statics/img/smalld8.jpg" src_H="../../statics/img/maind8.jpg"
+                                     src_D="../../statics/img/bigd8.jpg">
                             </li>
-                            <li><img src="statics/img/small32.jpg" src_H="statics/img/main32.jpg"
-                                     src_D="statics/img/big32.jpg">
+                            <li><img src="../../statics/img/small32.jpg" src_H="../../statics/img/main32.jpg"
+                                     src_D="../../statics/img/big32.jpg">
                             </li>
-                            <li><img src="statics/img/small81.jpg" src_H="statics/img/main81.jpg"
-                                     src_D="statics/img/big81.jpg">
+                            <li><img src="../../statics/img/small81.jpg" src_H="../../statics/img/main81.jpg"
+                                     src_D="../../statics/img/big81.jpg">
                             </li>
-                            <li><img src="statics/img/smallec.jpg" src_H="statics/img/mainec.jpg"
-                                     src_D="statics/img/bigec.jpg">
+                            <li><img src="../../statics/img/smallec.jpg" src_H="../../statics/img/mainec.jpg"
+                                     src_D="../../statics/img/bigec.jpg">
                             </li>
                         </ul>
                     </div>
@@ -205,12 +207,12 @@
         </div>
     </div>
 </div>
-<script src="statics/js/jquery-3.3.1.min.js"></script>
-<script src="statics/layui/layui.js"></script>
-<script src="statics/js/city.js"></script>
-<script src="statics/js/fangdajing.js"></script>
-<script src="statics/js/jquery.jqzoom.js"></script>
-<script src="statics/js/jquery.livequery.js"></script>
+<script src="../../statics/js/jquery-3.3.1.min.js"></script>
+<script src="../../statics/layui/layui.js"></script>
+<script src="../../statics/js/city.js"></script>
+<script src="../../statics/js/fangdajing.js"></script>
+<script src="../../statics/js/jquery.jqzoom.js"></script>
+<script src="../../statics/js/jquery.livequery.js"></script>
 <script>
     //加的效果
     $(".add").click(function () {
@@ -230,7 +232,7 @@
         }
         $(this).next().val(num);
     });
-    $('#cart').on('click',function () {
+    $('#cart').on('click', function () {
         var count = $('.num').val();
         alert(count);
     })

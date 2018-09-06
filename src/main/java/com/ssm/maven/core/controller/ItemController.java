@@ -179,7 +179,7 @@ public class ItemController {
 
 //        map.put("itemList",itemList);
 
-        return "redirect:/fruit.jsp";
+        return "fruit";
     }
 
 
@@ -189,7 +189,7 @@ public class ItemController {
         Item item = itemService.findItemById(itemId);
 
         request.getSession().setAttribute("item",item);
-        return "redirect:/detail.jsp";
+        return "detail";
     }
 
 

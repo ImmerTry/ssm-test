@@ -14,5 +14,9 @@
         <mapper resource="mappers/ItemMapper.xml"/>
         <mapper resource="mappers/ClassificationMapper.xml"/>
         <mapper resource="mappers/PictureMapper.xml"/>
+        <mapper resource="mappers/TUserMapper.xml"/>
+        <mapper resource="mappers/TOrderSendMapper.xml"/>
+        <mapper resource="mappers/TOrderMapper.xml"/>
+        <mapper resource="mappers/TOrderInfoMapper.xml"/>
     </mappers>
 </configuration>

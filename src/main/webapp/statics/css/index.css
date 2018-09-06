@@ -272,59 +272,6 @@ a:hover {
     color: #00c65d;
 }
 
-/*头部样式*/
-.head_nav {
-    height: 30px;
-    line-height: 30px;
-    background-color: #e3e4e5;
-}
-
-.head_nav2 {
-    position: relative;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-.head_nav2 ul li {
-    float: left;
-    list-style: none;
-}
-
-.fl {
-    padding-left: 15px;
-    padding-right: 15px;
-    float: left;
-    margin-bottom: 0;
-    color: #999999;
-}
-
-.fl li {
-    padding: 0 5px;
-}
-
-.fl li a {
-    color: #999999;
-}
-
-.fl li a:hover {
-    color: #e4393c;
-}
-
-.fr {
-    padding-left: 15px;
-    padding-right: 15px;
-    float: right;
-    margin-bottom: 0;
-}
-
-.fr a {
-    color: #999999;
-}
-
-.fr a:hover {
-    color: #e4393c;
-}
-
 .container {
     padding: 0;
     /*background: rgb(239,239,248);*/

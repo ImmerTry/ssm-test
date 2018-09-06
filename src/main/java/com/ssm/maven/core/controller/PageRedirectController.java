@@ -1,6 +1,7 @@
 package com.ssm.maven.core.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +24,28 @@ public class PageRedirectController {
         return "pictureManage";
     }
 
+    /**
+     * 登录回调
+     * @param redirectURL 回调地址
+     * @param model
+     * @return
+     */
     @RequestMapping("/login")
-    public String loginPage(HttpServletRequest request) {
-        return "redirect:/login.jsp";
+    public String loginPage(String redirectURL, Model model) {
+        model.addAttribute("redirect",redirectURL);
+        return "login";
     }
 
     @RequestMapping("/showFruit")
     public String showFruit(HttpServletRequest request) {
-        return "redirect:/fruit.jsp";
+        return "fruit";
     }
-    @RequestMapping("/test")
-    public String test(HttpServletRequest request) {
-        return "redirect:/test.html";
+    @RequestMapping("/register")
+    public String registerPage(HttpServletRequest request) {
+        return "register";
+    }
+    @RequestMapping("/index")
+    public String indexPage(HttpServletRequest request) {
+        return "index";
     }
 }

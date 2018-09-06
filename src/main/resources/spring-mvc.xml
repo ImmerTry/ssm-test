@@ -10,15 +10,15 @@
        http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-
+    <!--扫描配置文件-->
+    <context:property-placeholder location="classpath:db/*.properties"/>
     <!-- 扫描controller包，将控制器纳入Spring的管理中 -->
     <context:component-scan base-package="com.ssm.maven.core.controller"/>
-
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
 
     <!-- 对静态资源文件的访问 -->
-    <mvc:resources mapping="/static/**" location="classpath:../webapp/statics/" />
+    <mvc:resources mapping="/static/**" location="classpath:../webapp/statics/"/>
 
     <!--视图解析器 ViewResolver-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,6 +32,12 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="104857600"/>
     </bean>
-    <!--访问静态内容-->
-    <!--<mvc:default-servlet-handler/>-->
+    <mvc:interceptors>
+        <!--对所有的请求记性拦截-->
+        <!--对特定的请求进行拦截-->
+        <mvc:interceptor>
+            <mvc:mapping path="/item/detail*"/>
+            <bean class="com.ssm.maven.core.common.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

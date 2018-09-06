@@ -9,26 +9,12 @@
 <html>
 <head>
     <title>生鲜</title>
-    <link rel="stylesheet" href="statics/css/bootstrap.css">
-    <link rel="stylesheet" href="statics/layui/css/layui.css">
-    <link rel="stylesheet" href="statics/css/index.css">
+    <link rel="stylesheet" href="../../statics/css/bootstrap.css">
+    <link rel="stylesheet" href="../../statics/layui/css/layui.css">
+    <link rel="stylesheet" href="../../statics/css/index.css">
 </head>
 <body>
-<div class="head_nav">
-    <div class="head_nav2">
-        <ul class="fl">
-            <li>
-                <a href="login.jsp">登录</a>
-            </li>
-            <li>
-                <a href="regist.jsp">注册</a>
-            </li>
-        </ul>
-        <ul class="fr">
-            <a href="">购物车</a>
-        </ul>
-    </div>
-</div>
+<jsp:include page="top.jsp"/>
 <div class="container">
     <div class="nav_left_title">生鲜商品分类</div>
     <div class="nav_left">
@@ -140,10 +126,10 @@
         <div class="broadcast">
             <div class="layui-carousel" id="test10">
                 <div carousel-item="">
-                    <div><img src="statics/images/p1.jpg"></div>
-                    <div><img src="statics/images/p2.jpg"></div>
-                    <div><img src="statics/images/p3.jpg"></div>
-                    <div><img src="statics/images/p4.jpg"></div>
+                    <div><img src="../../statics/images/p1.jpg"></div>
+                    <div><img src="../../statics/images/p2.jpg"></div>
+                    <div><img src="../../statics/images/p3.jpg"></div>
+                    <div><img src="../../statics/images/p4.jpg"></div>
                 </div>
             </div>
         </div>
@@ -163,10 +149,10 @@
             </div>
         </div>
     </div>
-    <script src="statics/js/jquery-3.3.1.min.js"></script>
-    <script src="statics/js/bootstrap.js"></script>
-    <script src="statics/layui/layui.js"></script>
-    <script src="statics/js/index.js"></script>
+    <script src="../../statics/js/jquery-3.3.1.min.js"></script>
+    <script src="../../statics/js/bootstrap.js"></script>
+    <script src="../../statics/layui/layui.js"></script>
+    <script src="../../statics/js/index.js"></script>
     <script>
         $.ajax({
             url: '/cla/show.action',
