@@ -106,72 +106,72 @@
             <div class="item_head">
                 <div class="item_title">
                 </div>
-                    <ul class="vegetables_menu">
-                        <li>
-                            <div>
-                                <a href="#">菠菜</a>
-                                <a href="#">菜心</a>
-                                <a href="#">西兰花</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="fruit_children">
-                        <a href="#">山药</a>
-                        <a href="#">玉米</a>
-                        <a href="#">鹌鹑蛋</a>
-                    </div>
+                <ul class="vegetables_menu">
+                    <li>
+                        <div>
+                            <a href="#">菠菜</a>
+                            <a href="#">菜心</a>
+                            <a href="#">西兰花</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="fruit_children">
+                    <a href="#">山药</a>
+                    <a href="#">玉米</a>
+                    <a href="#">鹌鹑蛋</a>
                 </div>
-            </div>
-        </div>
-        <div class="broadcast">
-            <div class="layui-carousel" id="test10">
-                <div carousel-item="">
-                    <div><img src="../../statics/images/p1.jpg"></div>
-                    <div><img src="../../statics/images/p2.jpg"></div>
-                    <div><img src="../../statics/images/p3.jpg"></div>
-                    <div><img src="../../statics/images/p4.jpg"></div>
-                </div>
-            </div>
-        </div>
-        <div class="news">
-            <div class="news_top">
-                <div class="news_header">
-                    <span>(*´▽｀)ノノ头条</span>
-                </div>
-                <div class="news_context">
-                    <a href="#">遍寻天下鲜招募吃货小分队</a>
-                    <a href="#">0元试吃 全新上线 抓紧尝鲜</a>
-                    <a href="#">一键立享 用心做顿好饭</a>
-                </div>
-            </div>
-            <div class="news_img">
-                <img src="//img10.360buyimg.com/babel/jfs/t23338/45/1104080851/63144/b59d20fb/5b51aa80N3a14cd89.png!q80.webp">
             </div>
         </div>
     </div>
-    <script src="../../statics/js/jquery-3.3.1.min.js"></script>
-    <script src="../../statics/js/bootstrap.js"></script>
-    <script src="../../statics/layui/layui.js"></script>
-    <script src="../../statics/js/index.js"></script>
-    <script>
-        $.ajax({
-            url: '/cla/show.action',
-            type: 'post',
-            dataType: 'json',
-            success: function (data) {
+    <div class="broadcast">
+        <div class="layui-carousel" id="test10">
+            <div carousel-item="">
+                <div><img src="../../statics/images/p1.jpg"></div>
+                <div><img src="../../statics/images/p2.jpg"></div>
+                <div><img src="../../statics/images/p3.jpg"></div>
+                <div><img src="../../statics/images/p4.jpg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="news">
+        <div class="news_top">
+            <div class="news_header">
+                <span>(*´▽｀)ノノ头条</span>
+            </div>
+            <div class="news_context">
+                <a href="#">遍寻天下鲜招募吃货小分队</a>
+                <a href="#">0元试吃 全新上线 抓紧尝鲜</a>
+                <a href="#">一键立享 用心做顿好饭</a>
+            </div>
+        </div>
+        <div class="news_img">
+            <img src="//img10.360buyimg.com/babel/jfs/t23338/45/1104080851/63144/b59d20fb/5b51aa80N3a14cd89.png!q80.webp">
+        </div>
+    </div>
+</div>
+<script src="../../statics/js/jquery-3.3.1.min.js"></script>
+<script src="../../statics/js/bootstrap.js"></script>
+<script src="../../statics/layui/layui.js"></script>
+<script src="../../statics/js/index.js"></script>
+<script>
+    $.ajax({
+        url: '/cla/show.action',
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
 
-                var claList = data.claLists;
+            var claList = data.claLists;
 
-                $.each(claList, function (index, cla) {
-                    var str = "<a class='show_item' target='_blank' href='/item/showFruit.action?classId=" + cla.classId + "'>"
-                        + cla.className
-                        + "<span>></span>"
-                        + "</a>";
-                   $(".item_title")[index].innerHTML=str;
-                });
+            $.each(claList, function (index, cla) {
+                var str = "<a class='show_item' target='_blank' href='/item/showFruit/" + cla.classId + ".action'>"
+                    + cla.className
+                    + "<span>></span>"
+                    + "</a>";
+                $(".item_title")[index].innerHTML = str;
+            });
 
-            }
-        })
-    </script>
+        }
+    })
+</script>
 </body>
 </html>

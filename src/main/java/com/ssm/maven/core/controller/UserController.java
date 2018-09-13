@@ -2,7 +2,10 @@ package com.ssm.maven.core.controller;
 
 import com.ssm.maven.core.pojo.User;
 import com.ssm.maven.core.service.UserService;
+import com.ssm.maven.core.util.JDResult;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,43 +26,32 @@ public class UserController {
     public String loginIndex() {
         return "redirect:/login.jsp";
     }
-    @RequestMapping("admin")
-    public String redirectAdmin() {
-        return "admin";
-    }
 
     @RequestMapping("/login")
     @ResponseBody
-    public Map<String,Object> login(HttpServletRequest request, String loginid, String loginpwd) throws Exception {
-        Map<String,Object> map = new HashMap<>();
-        User user = new User(loginid,loginpwd);
+    public JDResult login(String loginId, String loginPwd, HttpServletRequest request) {
+        User user = new User(loginId, DigestUtils.md5DigestAsHex(loginPwd.getBytes()));
         user = userService.login(user);
-        if (user != null && "admin".equals(user.getLoginId()) && "123456".equals(user.getLoginPwd())) {
-            request.getSession().setAttribute("currUser", user);
-            map.put("status",0);
-        } else if (user != null) {
-            request.getSession().setAttribute("currUser", user);
-            map.put("status",1);
-        } else {
-            map.put("msg","用户名或密码输入不正确。");
+        if (user != null && "admin".equals(user.getLoginId())) {
+            request.getSession().setAttribute("currUser",user);
+            return JDResult.build(200, "登录成功");
         }
-        // System.out.println(map);
-        return map;
+        return JDResult.build(500, "用户名或密码输入有误");
     }
 
     @RequestMapping("/regist")
     @ResponseBody
-    public Map<String,Object> regist(HttpServletRequest request,String loginid,String loginpwd) {
-        Map<String,Object> map = new HashMap<>();
+    public Map<String, Object> regist(HttpServletRequest request, String loginid, String loginpwd) {
+        Map<String, Object> map = new HashMap<>();
         User user = new User();
         user.setLoginId(loginid);
         user.setLoginPwd(loginpwd);
         int count = userService.regist(user);
 
         if (count > 0) {
-            map.put("status",true);
+            map.put("status", true);
         } else {
-            map.put("status",false);
+            map.put("status", false);
         }
         return map;
     }
@@ -68,6 +60,6 @@ public class UserController {
     @RequestMapping("/out")
     public String out(HttpServletRequest request) {
         request.getSession().removeAttribute("currUser");
-        return "redirect:/";
+        return "index";
     }
 }

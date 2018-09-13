@@ -36,7 +36,7 @@
         <!--对所有的请求记性拦截-->
         <!--对特定的请求进行拦截-->
         <mvc:interceptor>
-            <mvc:mapping path="/item/detail*"/>
+            <mvc:mapping path="/item/detail/*"/>
             <bean class="com.ssm.maven.core.common.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

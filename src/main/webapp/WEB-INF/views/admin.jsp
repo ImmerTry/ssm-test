@@ -25,10 +25,11 @@
                     <ul class="nav navbar-nav">
                         <li><span class="admin">管理员</span></li>
                         <li class="dropdown">
-                            <span class="dropdown-toggle">${currUser.loginId}<i class="caret"></i></span>
+                            ${currUser.loginId}
+                            <span class="dropdown-toggle"><i class="caret"></i></span>
                             <ul class="dropdown-menu">
                                 <li><a href="#">个人信息</a></li>
-                                <li><a href="/user/loginIndex.action">切换账户</a></li>
+                                <li><a href="/page/adminLogin.action">切换账户</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/user/out.action">退出</a></li>
                             </ul>

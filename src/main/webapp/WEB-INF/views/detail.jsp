@@ -191,7 +191,7 @@
                             <a class="add">+</a>
                         </div>
                         <div class="right">
-                            <button type="button" id="cart">加入购物车</button>
+                            <button type="button" onclick="javascript:addCart()" id="cart">加入购物车</button>
                         </div>
                     </div>
                 </div>
@@ -215,7 +215,7 @@
 <script src="../../statics/js/jquery.livequery.js"></script>
 <script>
     //加的效果
-    $(".add").click(function () {
+    $(".add").on('click', function () {
         var n = $(this).prev().val();
         var num = parseInt(n) + 1;
         if (num == 0) {
@@ -224,7 +224,7 @@
         $(this).prev().val(num);
     });
     //减的效果
-    $(".reduce").click(function () {
+    $(".reduce").on('click', function () {
         var n = $(this).next().val();
         var num = parseInt(n) - 1;
         if (num == 0) {
@@ -232,17 +232,10 @@
         }
         $(this).next().val(num);
     });
-    $('#cart').on('click', function () {
-       $.ajax({
-           url:"/cart/add.action",
-           dataType:"json",
-           success:function (data) {
-               if (data.status == 200) {
-                   location.href = "/page/addCart.action";
-               }
-           }
-       })
-    })
+    function addCart() {
+        var num = $(".num").val();
+        location.href="/cart/add/${item.itemId}.action?num=" + num;
+    }
 
 </script>
 

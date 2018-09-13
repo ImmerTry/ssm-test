@@ -12,14 +12,22 @@
     <link rel="stylesheet" href="../../statics/css/bootstrap.min.css">
 </head>
 <body>
-<div class="modal show">
+<!-- 触发模态弹出窗的元素 -->
+<%--<button type="button" data-toggle="modal" data-target="#mymodal" class="btn btn-primary">点击</button>--%>
+<div class="modal fade" id="mymodal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="text-center text-primary" style="color:green">登录</h1>
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <div class="modal-title">
+                    <h1 class="text-center text-primary" style="color:green">后台登录</h1>
+                </div>
             </div>
             <div class="modal-body">
-                <form class="form col-md-12" id="loginForm" action="${pageContext.request.contextPath}/user/login.action" method="post">
+                <form class="form" id="loginForm" method="post" onsubmit="return false;">
                     <div class="form-group-lg" id="accountDiv">
                         <label class="sr-only" for="inputAccount">账号</label>
                         <div class="input-group">
@@ -52,21 +60,42 @@
                     <div class="checkbox">
                         <label> <input type="checkbox" value="remember-me">记住我</label>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-default btn-lg col-md-6" id="btn_register" type="submit">注册</button>
-                        <button class="btn btn-primary btn-lg col-md-6" id="btn_login" type="submit">登录</button>
+                    <div class="text-right">
+                        <%--<button class="btn btn-default btn-lg" id="btn_register" type="submit">注册</button>--%>
+                        <button class="btn btn-primary btn-lg" id="btn_login">登录</button>
                     </div>
                 </form>
-                <div class="modal-footer">
-                </div>
             </div>
         </div>
     </div>
 </div>
 <script src="../../statics/js/jquery-3.3.1.min.js"></script>
-<script>
-    /*跳转注册页面*/
-</script>
 <script src="../../statics/js/bootstrap.js"></script>
+<script>
+    $(function () {
+        $("#mymodal").modal({
+            backdrop: false
+        });
+    });
+
+    $("#btn_login").on('click',function () {
+       // alert($("#loginForm").serialize());
+        $.ajax({
+            url:"/user/login.action",
+            type:"post",
+            dataType:"json",
+            data:$("#loginForm").serialize(),
+            success:function (data) {
+               if (data.status == 200) {
+                   location.href = "/page/admin.action";
+                   alert(data.msg);
+               } else {
+                   alert(data.msg);
+               }
+            }
+        })
+    });
+
+</script>
 </body>
 </html>

@@ -171,20 +171,18 @@ public class ItemController {
         return pageInfo;
     }
 
-    @RequestMapping("/showFruit.**")
-    public String showFruit(@RequestParam("classId") int classId, HttpServletRequest request) {
+    @RequestMapping("/showFruit/{classId}")
+    public String showFruit(@PathVariable int classId, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         List<Item> itemList = itemService.getItemList(classId);
         request.getSession().setAttribute("itemList", itemList);
-
-//        map.put("itemList",itemList);
 
         return "fruit";
     }
 
 
-    @RequestMapping("/detail.**")
-    public String detail(@RequestParam("itemId") String itemId,HttpServletRequest request) {
+    @RequestMapping("/detail/{itemId}")
+    public String detail(@PathVariable String itemId,HttpServletRequest request) {
 
         Item item = itemService.findItemById(itemId);
 

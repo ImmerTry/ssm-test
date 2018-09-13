@@ -9,16 +9,32 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/page")
 public class PageRedirectController {
+    /**
+     * 商品管理
+     *
+     * @return
+     */
     @RequestMapping("/itemManage")
-    public String itemManage(HttpServletRequest request){
+    public String itemManage() {
         return "itemManage";
     }
 
+    /**
+     * 产品管理（分类）
+     *
+     * @return
+     */
     @RequestMapping("/productManage")
-    public String productManage(HttpServletRequest request) {
+    public String productManage() {
         return "productManage";
     }
 
+    /**
+     * 图片管理
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping("/pictureManage")
     public String pictureManage(HttpServletRequest request) {
         return "pictureManage";
@@ -26,26 +42,64 @@ public class PageRedirectController {
 
     /**
      * 登录回调
+     *
      * @param redirectURL 回调地址
      * @param model
      * @return
      */
     @RequestMapping("/login")
     public String loginPage(String redirectURL, Model model) {
-        model.addAttribute("redirect",redirectURL);
+        model.addAttribute("redirect", redirectURL);
         return "login";
     }
 
+    /**
+     * 展示商品
+     *
+     * @return
+     */
     @RequestMapping("/showFruit")
-    public String showFruit(HttpServletRequest request) {
+    public String showFruit() {
         return "fruit";
     }
+
+    /**
+     * 注册
+     *
+     * @return
+     */
     @RequestMapping("/register")
-    public String registerPage(HttpServletRequest request) {
+    public String registerPage() {
         return "register";
     }
+
+    /**
+     * 首页
+     *
+     * @return
+     */
     @RequestMapping("/index")
-    public String indexPage(HttpServletRequest request) {
+    public String indexPage() {
         return "index";
+    }
+
+    /**
+     * 后台登录
+     *
+     * @return
+     */
+    @RequestMapping("/adminLogin")
+    public String adminLogin() {
+        return "loginModal";
+    }
+
+    /**
+     * 后台页面
+     *
+     * @return
+     */
+    @RequestMapping("/admin")
+    public String redirectAdmin() {
+        return "admin";
     }
 }
