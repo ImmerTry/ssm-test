@@ -23,7 +23,6 @@
         <c:when test="${cartList == null && user == null}">
             <div class="w">
                 <div class="cart-empty">
-
                     <div class="message">
                         <ul>
                             <li class="txt">
@@ -41,7 +40,7 @@
                 </div>
             </div>
         </c:when>
-        <c:when test="${cartList == null && user != null}">
+        <c:when test="${cartList == null}">
             <div class="w">
                 <div class="cart-empty">
                     <div class="message">
@@ -50,7 +49,7 @@
                                 购物车内暂时没有商品
                             </li>
                             <li>
-                                <a href="http://localhost:8101" class="ftx-05">
+                                <a href="/page/index.action" class="ftx-05">
                                     去购物&gt;
                                 </a>
                             </li>
@@ -60,6 +59,7 @@
             </div>
         </c:when>
         <c:otherwise>
+            <c:set var="totalPrice" value="0"></c:set>
             <div class="w">
                 <div class="cart-filter-bar">
                     <ul class="switch-cart">
@@ -134,6 +134,8 @@
                                         </div>
                                         <div class="item-list">
                                             <c:forEach items="${cartList}" var="cart">
+                                                <c:set var="totalPrice"
+                                                       value="${ totalPrice + (cart.price * cart.num)}"/>
                                                 <div class="item-give item-full" id="product_promo_${cart.id}">
                                                     <!-- 单品-->
                                                     <div class="item-last item-item item-selected"
@@ -163,7 +165,7 @@
                                                                     <div class="item-msg">
                                                                         <div class="p-name">
                                                                             <a clstag="clickcart|keycount|xincart|cart_sku_name"
-                                                                               href="http://localhost:8103/item/${cart.id}.html"
+                                                                               href="#"
                                                                                target='_blank'>${cart.title}
                                                                             </a>
                                                                         </div>
@@ -176,44 +178,42 @@
                                                             </div>
                                                             <div class="cell p-price">
                                                                 <strong id="p-price${cart.id}" value="${cart.price}">
-                                                                    ¥<fmt:formatNumber groupingUsed="false"
-                                                                                       value="${cart.price}"/>
+                                                                    ¥<fmt:formatNumber value="${cart.price}"/>
                                                                 </strong>
                                                             </div>
                                                             <div class="cell p-quantity">
                                                                 <!-- 满赠 -->
-                                                                <div class="quantity-form" promoid="196031044">
+                                                                <div class="quantity-form">
                                                                     <a href="javascript:void(0);"
-                                                                       clstag="clickcart|keycount|xincart|cart_num_down"
                                                                        class="decrement"
-                                                                       id="decrement${cart.id}"
-                                                                       onclick="decrement('${cart.id}')">-</a>
+                                                                       clstag="clickcart|keycount|xincart|diminish1"
+                                                                       id="decrement">-</a>
                                                                     <input autocomplete="off" type="text" class="itxt"
-                                                                           value="${cart.num}"
+                                                                           itemPrice="${cart.price}" itemId="${cart.id}"
+                                                                           value="${cart.num }"
                                                                            id="changeQuantity${cart.id}"
                                                                            minnum="1"/>
                                                                     <a href="javascript:void(0);"
-                                                                       clstag="clickcart|keycount|xincart|cart_num_up"
                                                                        class="increment"
-                                                                       id="increment${cart.id}"
-                                                                       onclick="increment('${cart.id}')">+</a>
+                                                                       clstag="clickcart|keycount|xincart|add1"
+                                                                       id="increment">+</a>
                                                                 </div>
                                                                 <div class="ac ftx-03 quantity-txt"
                                                                      _stock="stock_${cart.id}">有货
                                                                 </div>
                                                             </div>
+                                                                <%--小计--%>
                                                             <div class="cell p-sum">
                                                                 <strong id="p-sum${cart.id}"
-                                                                        value="${cart.sum}">¥${cart.price}"</strong>
-                                                                <span class="weight" id="weight_${cart.id}" data="0.39"
-                                                                      fresh=""
-                                                                      skuId="3133817" num="1"></span>
+                                                                        value="${totalPrice}">¥${totalPrice}</strong>
+                                                                <span class="weight" id="weight_${cart.id}"
+                                                                      num="1"></span>
                                                             </div>
                                                             <div class="cell p-ops">
                                                                 <!-- 满赠 -->
                                                                 <a id="remove_8888_${cart.id}_13_196031044"
                                                                    clstag="clickcart|keycount|xincart|cart_sku_del"
-                                                                   data-name="${cart.name}"
+                                                                   data-name="${cart.title}"
                                                                    class="cart-remove"
                                                                    href="javascript:void(0);">删除</a>
                                                                 <a href="javascript:void(0);" class="cart-follow"
@@ -252,7 +252,7 @@
                                         <a href="#none" class="follow-batch"
                                            clstag="clickcart|keycount|xincart|cart_somesku_guanzhu">移到我的关注</a>
                                         <a class="J_clr_nosale" href="#none"
-                                           clstag="pageclick|keycount|201508251|23">清除下柜商品</a>
+                                           clstag="pageclick|keycount|201508251|23">清空购物车</a>
                                     </div>
                                     <div class="clr"></div>
                                     <div class="toolbar-right">
@@ -266,8 +266,10 @@
                                                 <div class="price-sum">
                                                     <div>
                                                         <span class="txt txt-new">总价：</span>
-                                                        <span class="price sumPrice"><em id="totalPrice"
-                                                                                         value="${totalPrice}">¥${totalPrice}"</em></span>
+                                                        <span class="price sumPrice">
+                                                            <em id="totalPrice" value="${totalPrice}">¥<fmt:formatNumber
+                                                                    value="${totalPrice}"/></em>
+                                                        </span>
                                                         <b class="ml5 price-tips"></b>
                                                         <div class="price-tipsbox"
                                                              style="display: none; left: 159.85px;">
@@ -280,8 +282,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="amount-sum">
-                                                    已选择<em id="amount-sum"></em>件商品<b class="up"
-                                                                                      clstag="clickcart|keycount|xincart|cart_thumbnailOpen"></b>
+                                                    已选择<em id="amount-sum">1</em>件商品<b class="up"
+                                                                                       clstag="clickcart|keycount|xincart|cart_thumbnailOpen"></b>
                                                 </div>
                                                 <div class="clr"></div>
                                             </div>
@@ -301,7 +303,7 @@
         </c:otherwise>
     </c:choose>
 </div>
-<script src="../../statics/js/jquery-3.3.1.min.js"></script>
+<script src="/statics/js/jquery-3.3.1.min.js"></script>
 <script>
     function check(id) {
         //判断是否选中
@@ -314,10 +316,12 @@
         var amountSumValue = parseInt(amountSum.text());
         //勾线商品总价
         var totalValue = parseInt(totalPrice.attr('value'));
+        // console.log("totalValue:" + totalValue);
         //单独商品总价对象
         var sum = $('#p-sum' + id);
         //单独商品总价
         var sumValue = parseInt(sum.attr('value'));
+        // console.log("sumValue:" + sumValue);
         var selected = $('#product_' + id);
         //是否被选中
         if (check) {
@@ -326,7 +330,8 @@
             //更改全部商品总价
             totalPrice.attr('value', totalValue + sumValue);
             //更改全部商品总价显示
-            totalPrice.text('￥' + ((totalValue + sumValue) / 100).toFixed(2));
+            totalPrice.text('￥' + (totalValue + sumValue));
+            // totalPrice.text('￥' + ((totalValue + sumValue) / 100).toFixed(2));
             //商品选中数量加1
             amountSum.text(amountSumValue + 1);
             selected.addClass('item-selected');
@@ -336,108 +341,85 @@
             //更改全部商品总价
             totalPrice.attr('value', totalValue - sumValue);
             //更改全部商品总价显示
-            totalPrice.text('￥' + ((totalValue - sumValue) / 100).toFixed(2));
+            totalPrice.text('￥' + (totalValue - sumValue));
+            // totalPrice.text('￥' + ((totalValue - sumValue) / 100).toFixed(2));
             //商品选中数量减1
             amountSum.text(amountSumValue - 1);
             selected.removeClass('item-selected');
         }
     }
 
+
     //减少商品
-    function decrement(id) {
-        var check = $("#check" + id).is(':checked');
+    $(".decrement").on('click', function () {//-
 
-        var quantity = $('#changeQuantity' + id);
-        var nub = parseInt(quantity.val());
-
+        var _thisInput = $(this).siblings("input");
+        var id = _thisInput.attr("itemId");
+        var nub = parseInt(_thisInput.val());
         if (nub == 1) {
             return;
         }
-
-        $.post("/decreOrIncre.action",
-            {
-                pid: id,
-                pcount: 1,
-                type: 2,
-                index: $("#check" + id).attr('index')
+        _thisInput.val(nub - 1);
+        $.post("/cart/decreOrIncre/" + _thisInput.attr("itemId") + "/" + _thisInput.val() + ".action", function (data) {
+            if (data.status != 200) {
+                alert("数据有误");
             }
-            , function (data) {
-                if (data && data.status == 400) {
-                    alert(data.error);
-                }
-            }).error(function () {
-            alert('服务器添加数量失败!');
         });
 
-        quantity.val(nub - 1);
         var price = parseInt($('#p-price' + id).attr('value'));
-//            alert(price);
+
         var sum = $('#p-sum' + id);
 
         var sumPrice = $('#p-sum' + id);
         sumPrice.attr('value', price * (nub - 1));
 
-        if (check) {
+        if ($("#check" + id).attr('checked')) {
             var totalPrice = $('#totalPrice');
             //总价
             var totalPriceValue = parseInt($('#totalPrice').attr('value'));
             var totalValue = totalPriceValue - price;
-            totalPrice.text('￥' + (totalValue / 100).toFixed(2));
+            totalPrice.text('￥' + totalValue.toFixed(2));
             totalPrice.attr('value', totalValue);
         }
-//            alert(pricesum);
-        var pricesum = price * (nub - 1) / 100;
+        var pricesum = price * (nub - 1);
         sum.text('￥' + pricesum.toFixed(2));
 
-        if (nub - 1 == parseInt(quantity.attr('minnum'))) {
+        if (nub - 1 == parseInt(_thisInput.attr('minnum'))) {
             $('#decrement' + id).addClass('disabled');
         }
-    }
-
+    });
     //增加商品
-    function increment(id) {
+    $(".increment").on('click', function () {//＋
 
-        var check = $("#check" + id).is(':checked');
-
-        var quantity = $('#changeQuantity' + id);
-        var nub = parseInt(quantity.val());
-
-        $.post("/decreOrIncre.action",
-            {
-                pid: id,
-                pcount: 1,
-                type: 1,
-                index: $("#check" + id).attr('index')
+        var _thisInput = $(this).siblings("input");
+        var id = _thisInput.attr("itemId");
+        var nub = parseInt(_thisInput.val());
+        _thisInput.val(nub + 1);
+        $.post("/cart/decreOrIncre/" + _thisInput.attr("itemId") + "/" + _thisInput.val() + ".action", function (data) {
+            if (data.status != 200) {
+                alert("数据有误");
             }
-            , function (data) {
-                if (data && data.status == 400) {
-                    alert(data.error);
-                }
-            }).error(function () {
-            alert('服务器添加数量失败!');
         });
-
-        quantity.val(parseInt(quantity.val()) + 1);
         $('#decrement' + id).removeClass('disabled');
 
         var price = parseInt($('#p-price' + id).attr('value'));
-//            alert(price);
         var sum = $('#p-sum' + id);
-        if (check) {
+        if ($("#check" + id).attr('checked')) {
             var totalPrice = $('#totalPrice');
             //总价
             var totalPriceValue = parseInt($('#totalPrice').attr('value'));
             var totalValue = totalPriceValue + price;
-            totalPrice.text('￥' + (totalValue / 100).toFixed(2));
+            totalPrice.text('￥' + totalValue.toFixed(2));
             totalPrice.attr('value', totalValue);
         }
 
         var sumPrice = $('#p-sum' + id);
         sumPrice.attr('value', price * (nub + 1));
-        var pricesum = price * (nub + 1) / 100;
-//            alert(pricesum);
+        var pricesum = price * (nub + 1);
+        // alert(pricesum);
         sum.text('￥' + pricesum.toFixed(2));
-    }
+    });
+
 </script>
 </body>
 </html>

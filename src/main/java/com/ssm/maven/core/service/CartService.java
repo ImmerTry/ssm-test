@@ -15,4 +15,6 @@ public interface CartService {
     JDResult addCart(String itemId, Integer num, HttpServletRequest request, HttpServletResponse response);
 
     List<CartItem> getItems(HttpServletRequest request);
+
+    JDResult updateCartItem(String id,Integer num,HttpServletRequest request,HttpServletResponse response);
 }

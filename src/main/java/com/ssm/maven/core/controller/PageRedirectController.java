@@ -102,4 +102,13 @@ public class PageRedirectController {
     public String redirectAdmin() {
         return "admin";
     }
+
+    /**
+     * 去购物车页面
+     * @return
+     */
+    @RequestMapping("/goCart")
+    public String goCart() {
+        return "cart";
+    }
 }

@@ -79,6 +79,23 @@ public class CartServiceImpl implements CartService {
         return list;
     }
 
+    @Override
+    public JDResult updateCartItem(String itemId, Integer num,HttpServletRequest request, HttpServletResponse response) {
+        //从cookie取出商品
+        List<CartItem> list = getItemListByCookie(request);
+        //根据商品ID获取商品
+        for (CartItem cart : list) {
+            //更新数量
+            if (itemId.equals(cart.getId())) {
+                cart.setNum(num);
+            }
+        }
+        //写入cookie
+        CookieUtils.setCookie(request, response, LL_CART, JackJson.fromObjectToJson(list), COOKIE_EXPIRE, true);
+        return JDResult.ok();
+    }
+
+
     /**
      * 获取cookie购物车列表
      *

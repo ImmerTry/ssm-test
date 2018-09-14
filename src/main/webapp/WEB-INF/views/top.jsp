@@ -55,6 +55,9 @@
         float: right;
         margin-bottom: 0;
     }
+    .fr li {
+        margin-right: 20px;
+    }
 
     .fr a {
         color: #999999;
@@ -72,13 +75,18 @@
                 <a href="javascript:register()">免费注册</a></li>
         </ul>
         <ul class="fr">
-            <a href="">购物车</a>
+            <li>
+                <a href="#">我的订单</a>
+            </li>
+            <li>
+                <a href="/cart/cart.action">购物车</a>
+            </li>
         </ul>
     </div>
 </div>
-<script src="../../statics/js/base.js"></script>
-<script src="../../statics/js/jquery-3.3.1.min.js"></script>
-<script src="../../statics/js/js.cookie.js"></script>
+<script src="/statics/js/base.js"></script>
+<script src="/statics/js/jquery-3.3.1.min.js"></script>
+<script src="/statics/js/js.cookie.js"></script>
 <script>
     var TT = {
         checkLogin: function () {
