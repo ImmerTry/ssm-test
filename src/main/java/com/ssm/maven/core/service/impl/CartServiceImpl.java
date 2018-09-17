@@ -80,7 +80,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public JDResult updateCartItem(String itemId, Integer num,HttpServletRequest request, HttpServletResponse response) {
+    public JDResult updateCartItem(String itemId, Integer num, HttpServletRequest request, HttpServletResponse response) {
         //从cookie取出商品
         List<CartItem> list = getItemListByCookie(request);
         //根据商品ID获取商品
@@ -88,6 +88,23 @@ public class CartServiceImpl implements CartService {
             //更新数量
             if (itemId.equals(cart.getId())) {
                 cart.setNum(num);
+            }
+        }
+        //写入cookie
+        CookieUtils.setCookie(request, response, LL_CART, JackJson.fromObjectToJson(list), COOKIE_EXPIRE, true);
+        return JDResult.ok();
+    }
+
+    @Override
+    public JDResult deleteCartItem(String id, HttpServletRequest request, HttpServletResponse response) {
+        //从cookie取出商品列表
+        List<CartItem> list = getItemListByCookie(request);
+        for (CartItem cartItem : list) {
+            //判断id是否相等
+            if (id.equals(cartItem.getId())) {
+                //删除商品
+                list.remove(cartItem);
+                break;
             }
         }
         //写入cookie
@@ -103,13 +120,15 @@ public class CartServiceImpl implements CartService {
      * @return
      */
     private List<CartItem> getItemListByCookie(HttpServletRequest request) {
-
+        //从cookie获取购物车列表
+        String json = CookieUtils.getCookieValue(request, LL_CART, true);
+        if (json == null) {
+            return new ArrayList<>();
+        }
         try {
-            String json = CookieUtils.getCookieValue(request, LL_CART, true);
             //把json转换为CartItem对象
             List<CartItem> itemList = JackJson.fromJsonToList(json, CartItem.class);
-            return itemList != null ? itemList : new ArrayList<>();
-
+            return itemList;
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList<>();

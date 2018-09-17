@@ -79,7 +79,7 @@
                 <a href="#">我的订单</a>
             </li>
             <li>
-                <a href="/cart/cart.action">购物车</a>
+                <a href="/page/goCart.action">购物车</a>
             </li>
         </ul>
     </div>
@@ -95,7 +95,7 @@
                 return;
             }
             $.ajax({
-                url: "http://localhost:8080/users/token/" + _ticket + ".action",
+                url: "/users/token/" + _ticket + ".action",
                 dataType: "json",
                 type: "GET",
                 success: function (data) {
@@ -118,7 +118,7 @@
 
     function logout() {
         $.ajax({
-            url: "http://localhost:8080/users/logout.action",
+            url: "/users/logout.action",
             dataType: "json",
             success: function (data) {
                 if (data.status == 200) {

@@ -17,4 +17,6 @@ public interface CartService {
     List<CartItem> getItems(HttpServletRequest request);
 
     JDResult updateCartItem(String id,Integer num,HttpServletRequest request,HttpServletResponse response);
+
+    JDResult deleteCartItem(String id,HttpServletRequest request,HttpServletResponse response);
 }

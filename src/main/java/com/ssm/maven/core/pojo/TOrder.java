@@ -29,7 +29,7 @@ public class TOrder {
 
     private String shippingcode;
 
-    private Integer adminid;
+    private String loginid;
 
     private String message;
 
@@ -137,12 +137,12 @@ public class TOrder {
         this.shippingcode = shippingcode == null ? null : shippingcode.trim();
     }
 
-    public Integer getAdminid() {
-        return adminid;
+    public String getLoginid() {
+        return loginid;
     }
 
-    public void setAdminid(Integer adminid) {
-        this.adminid = adminid;
+    public void setLoginid(String loginid) {
+        this.loginid = loginid == null ? null : loginid.trim();
     }
 
     public String getMessage() {

@@ -1,5 +1,4 @@
-<%@ page import="com.ssm.maven.core.pojo.CartItem" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: SugarMan
   Date: 2018/9/12
@@ -20,6 +19,7 @@
 <jsp:include page="top.jsp"/>
 <div class="cart" id="container">
     <c:choose>
+
         <c:when test="${cartList == null && user == null}">
             <div class="w">
                 <div class="cart-empty">
@@ -29,9 +29,9 @@
                                 购物车内暂时没有商品，登录后将显示您之前加入的商品
                             </li>
                             <li>
-                                <a href="http://localhost:8104/login.html?returnUrl=http://localhost:8107/cart.html"
+                                <a href="/page/login.action?redirectURL=/cart/cart.action"
                                    class="btn-1 login-btn mr10">登录</a>
-                                <a href="http://localhost:8101" class="ftx-05">
+                                <a href="/page/index.action" class="ftx-05">
                                     去购物&gt;
                                 </a>
                             </li>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </c:when>
-        <c:when test="${cartList == null}">
+        <c:when test="${cartList == null && user != null}">
             <div class="w">
                 <div class="cart-empty">
                     <div class="message">
@@ -205,7 +205,7 @@
                                                                 <%--小计--%>
                                                             <div class="cell p-sum">
                                                                 <strong id="p-sum${cart.id}"
-                                                                        value="${totalPrice}">¥${totalPrice}</strong>
+                                                                        value="${cart.price}">¥${cart.price}</strong>
                                                                 <span class="weight" id="weight_${cart.id}"
                                                                       num="1"></span>
                                                             </div>
@@ -215,9 +215,8 @@
                                                                    clstag="clickcart|keycount|xincart|cart_sku_del"
                                                                    data-name="${cart.title}"
                                                                    class="cart-remove"
-                                                                   href="javascript:void(0);">删除</a>
+                                                                   href="/cart/delete/${cart.id}.action">删除</a>
                                                                 <a href="javascript:void(0);" class="cart-follow"
-                                                                   id="follow_8888_${cart.id}_13_196031044"
                                                                    clstag="clickcart|keycount|xincart|cart_sku_guanzhu">移到我的关注</a>
                                                             </div>
                                                         </div>
@@ -259,7 +258,7 @@
                                         <div class="normal">
                                             <div class="comm-right">
                                                 <div class="btn-area">
-                                                    <a href="javascript:void(0);" onclick="gotoOrder()"
+                                                    <a href="/order/showOrder.action"
                                                        class="submit-btn">
                                                         去结算<b></b></a>
                                                 </div>

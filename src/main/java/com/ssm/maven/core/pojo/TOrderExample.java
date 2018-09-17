@@ -935,63 +935,73 @@ public class TOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIsNull() {
-            addCriterion("adminid is null");
+        public Criteria andLoginidIsNull() {
+            addCriterion("loginid is null");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIsNotNull() {
-            addCriterion("adminid is not null");
+        public Criteria andLoginidIsNotNull() {
+            addCriterion("loginid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidEqualTo(Integer value) {
-            addCriterion("adminid =", value, "adminid");
+        public Criteria andLoginidEqualTo(String value) {
+            addCriterion("loginid =", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidNotEqualTo(Integer value) {
-            addCriterion("adminid <>", value, "adminid");
+        public Criteria andLoginidNotEqualTo(String value) {
+            addCriterion("loginid <>", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidGreaterThan(Integer value) {
-            addCriterion("adminid >", value, "adminid");
+        public Criteria andLoginidGreaterThan(String value) {
+            addCriterion("loginid >", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("adminid >=", value, "adminid");
+        public Criteria andLoginidGreaterThanOrEqualTo(String value) {
+            addCriterion("loginid >=", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidLessThan(Integer value) {
-            addCriterion("adminid <", value, "adminid");
+        public Criteria andLoginidLessThan(String value) {
+            addCriterion("loginid <", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidLessThanOrEqualTo(Integer value) {
-            addCriterion("adminid <=", value, "adminid");
+        public Criteria andLoginidLessThanOrEqualTo(String value) {
+            addCriterion("loginid <=", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidIn(List<Integer> values) {
-            addCriterion("adminid in", values, "adminid");
+        public Criteria andLoginidLike(String value) {
+            addCriterion("loginid like", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidNotIn(List<Integer> values) {
-            addCriterion("adminid not in", values, "adminid");
+        public Criteria andLoginidNotLike(String value) {
+            addCriterion("loginid not like", value, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidBetween(Integer value1, Integer value2) {
-            addCriterion("adminid between", value1, value2, "adminid");
+        public Criteria andLoginidIn(List<String> values) {
+            addCriterion("loginid in", values, "loginid");
             return (Criteria) this;
         }
 
-        public Criteria andAdminidNotBetween(Integer value1, Integer value2) {
-            addCriterion("adminid not between", value1, value2, "adminid");
+        public Criteria andLoginidNotIn(List<String> values) {
+            addCriterion("loginid not in", values, "loginid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginidBetween(String value1, String value2) {
+            addCriterion("loginid between", value1, value2, "loginid");
+            return (Criteria) this;
+        }
+
+        public Criteria andLoginidNotBetween(String value1, String value2) {
+            addCriterion("loginid not between", value1, value2, "loginid");
             return (Criteria) this;
         }
 

@@ -2,7 +2,6 @@ package com.ssm.maven.core.controller;
 
 import com.ssm.maven.core.pojo.CartItem;
 import com.ssm.maven.core.service.CartService;
-import com.ssm.maven.core.util.ExceptionUtil;
 import com.ssm.maven.core.util.JDResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,5 +48,13 @@ public class CartController {
 
         return result;
 
+    }
+
+    @RequestMapping("/delete/{itemId}")
+    public String deleteCartItem(@PathVariable String itemId,HttpServletRequest request,
+                                 HttpServletResponse response) {
+
+        JDResult result = cartService.deleteCartItem(itemId, request, response);
+        return "redirect:/cart/cart.action";
     }
 }

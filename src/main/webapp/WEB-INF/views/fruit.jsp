@@ -11,8 +11,8 @@
 <html>
 <head>
     <title> 水果 生鲜【行情 价格 评价 图片】</title>
-    <link href="../../statics/css/bootstrap.css" rel="stylesheet">
-    <link href="../../statics/css/fruit.css" rel="stylesheet">
+    <link href="/statics/css/bootstrap.css" rel="stylesheet">
+    <link href="/statics/css/fruit.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="top.jsp"/>
@@ -64,8 +64,8 @@
         </c:otherwise>
     </c:choose>
 </div>
-<script src="../../statics/js/jquery-3.3.1.min.js"></script>
-<script src="../../statics/js/bootstrap.js"></script>
+<script src="/statics/js/jquery-3.3.1.min.js"></script>
+<script src="/statics/js/bootstrap.js"></script>
 <script type="text/javascript">
     var str = "";
     $(" input[ name='itemId' ] ").each(function (index) {
