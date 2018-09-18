@@ -111,4 +111,9 @@ public class PageRedirectController {
     public String goCart() {
         return "cart";
     }
+
+    @RequestMapping("/success")
+    public String goSuccess() {
+        return "success";
+    }
 }

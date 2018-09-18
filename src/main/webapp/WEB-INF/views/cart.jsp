@@ -19,7 +19,6 @@
 <jsp:include page="top.jsp"/>
 <div class="cart" id="container">
     <c:choose>
-
         <c:when test="${cartList == null && user == null}">
             <div class="w">
                 <div class="cart-empty">
@@ -59,7 +58,6 @@
             </div>
         </c:when>
         <c:otherwise>
-            <c:set var="totalPrice" value="0"></c:set>
             <div class="w">
                 <div class="cart-filter-bar">
                     <ul class="switch-cart">
@@ -84,7 +82,7 @@
                             <div class="ui-area-content-wrap">
                                 <div class="ui-area-tab">
                                 </div>
-                                <div class="ui-area-content" clstag="clickcart|keycount|xincart|cart_changeArea">
+                                <div class="ui-area-content">
                                 </div>
                             </div>
                         </div>
@@ -105,8 +103,7 @@
                                 <div class="column t-checkbox">
                                     <div class="cart-checkbox">
                                         <input type="checkbox" checked="checked" id="toggle-checkboxes_up"
-                                               name="toggle-checkboxes" class="jdcheckbox"
-                                               clstag="clickcart|keycount|xincart|cart_allCheck">
+                                               name="toggle-checkboxes" class="jdcheckbox">
                                         <label class="checked" for="">勾选全部商品</label>
                                     </div>
                                     全选
@@ -127,15 +124,14 @@
                                         <div class="shop">
                                             <div class="cart-checkbox">
                                                 <input type="checkbox" checked="checked" name='checkShop'
-                                                       class="jdcheckbox"
-                                                       clstag="clickcart|keycount|xincart|cart_checkOn_shop">
+                                                       class="jdcheckbox">
                                                 <label for="">勾选店铺内全部商品</label>
                                             </div>
                                         </div>
                                         <div class="item-list">
                                             <c:forEach items="${cartList}" var="cart">
-                                                <c:set var="totalPrice"
-                                                       value="${ totalPrice + (cart.price * cart.num)}"/>
+                                                <c:set var="num" value="${cart.num}"/>
+                                                <c:set var="totalPrice" value="${ totalPrice + (cart.price * cart.num)}"/>
                                                 <div class="item-give item-full" id="product_promo_${cart.id}">
                                                     <!-- 单品-->
                                                     <div class="item-last item-item item-selected"
@@ -158,14 +154,12 @@
                                                                            target='_blank'
                                                                            class="J_zyyhq_${cart.id}">
                                                                             <img alt="${cart.title}"
-                                                                                 clstag="clickcart|keycount|xincart|cart_sku_pic"
                                                                                  src="${cart.image}" height="80"
                                                                                  width="80"></a>
                                                                     </div>
                                                                     <div class="item-msg">
                                                                         <div class="p-name">
-                                                                            <a clstag="clickcart|keycount|xincart|cart_sku_name"
-                                                                               href="#"
+                                                                            <a href="#"
                                                                                target='_blank'>${cart.title}
                                                                             </a>
                                                                         </div>
@@ -185,18 +179,14 @@
                                                                 <!-- 满赠 -->
                                                                 <div class="quantity-form">
                                                                     <a href="javascript:void(0);"
-                                                                       class="decrement"
-                                                                       clstag="clickcart|keycount|xincart|diminish1"
-                                                                       id="decrement">-</a>
+                                                                       class="decrement"id="decrement">-</a>
                                                                     <input autocomplete="off" type="text" class="itxt"
                                                                            itemPrice="${cart.price}" itemId="${cart.id}"
                                                                            value="${cart.num }"
                                                                            id="changeQuantity${cart.id}"
                                                                            minnum="1"/>
                                                                     <a href="javascript:void(0);"
-                                                                       class="increment"
-                                                                       clstag="clickcart|keycount|xincart|add1"
-                                                                       id="increment">+</a>
+                                                                       class="increment" id="increment">+</a>
                                                                 </div>
                                                                 <div class="ac ftx-03 quantity-txt"
                                                                      _stock="stock_${cart.id}">有货
@@ -205,19 +195,17 @@
                                                                 <%--小计--%>
                                                             <div class="cell p-sum">
                                                                 <strong id="p-sum${cart.id}"
-                                                                        value="${cart.price}">¥${cart.price}</strong>
+                                                                        value="${cart.price * num}">¥${cart.price * num}</strong>
                                                                 <span class="weight" id="weight_${cart.id}"
                                                                       num="1"></span>
                                                             </div>
                                                             <div class="cell p-ops">
                                                                 <!-- 满赠 -->
                                                                 <a id="remove_8888_${cart.id}_13_196031044"
-                                                                   clstag="clickcart|keycount|xincart|cart_sku_del"
                                                                    data-name="${cart.title}"
                                                                    class="cart-remove"
                                                                    href="/cart/delete/${cart.id}.action">删除</a>
-                                                                <a href="javascript:void(0);" class="cart-follow"
-                                                                   clstag="clickcart|keycount|xincart|cart_sku_guanzhu">移到我的关注</a>
+                                                                <a href="javascript:void(0);" class="cart-follow">移到我的关注</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -239,19 +227,15 @@
                                         <div class="cart-checkbox">
                                             <input type="checkbox" checked="checked"
                                                    id="toggle-checkboxes_down"
-                                                   name="toggle-checkboxes" class="jdcheckbox"
-                                                   clstag="clickcart|keycount|xincart|cart_allCheckDown">
+                                                   name="toggle-checkboxes" class="jdcheckbox">
                                             <label class="checked" for="">勾选全部商品</label>
                                         </div>
                                         全选
                                     </div>
                                     <div class="operation">
-                                        <a href="#none" clstag="clickcart|keycount|xincart|cart_somesku_del"
-                                           class="remove-batch">删除选中的商品</a>
-                                        <a href="#none" class="follow-batch"
-                                           clstag="clickcart|keycount|xincart|cart_somesku_guanzhu">移到我的关注</a>
-                                        <a class="J_clr_nosale" href="#none"
-                                           clstag="pageclick|keycount|201508251|23">清空购物车</a>
+                                        <a href="#none" class="remove-batch">删除选中的商品</a>
+                                        <a href="#none" class="follow-batch">移到我的关注</a>
+                                        <a class="J_clr_nosale" href="#none">清空购物车</a>
                                     </div>
                                     <div class="clr"></div>
                                     <div class="toolbar-right">
@@ -281,8 +265,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="amount-sum">
-                                                    已选择<em id="amount-sum">1</em>件商品<b class="up"
-                                                                                       clstag="clickcart|keycount|xincart|cart_thumbnailOpen"></b>
+                                                    已选择<em id="amount-sum">${num}</em>件商品<b class="up"></b>
                                                 </div>
                                                 <div class="clr"></div>
                                             </div>

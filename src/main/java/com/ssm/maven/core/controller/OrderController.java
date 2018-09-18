@@ -42,12 +42,12 @@ public class OrderController {
         //获取订单id
         String orderId = orderService.createOrderId(orderInfo);
         //取订单总额
-        model.addAttribute("orderId", orderId);
-        model.addAttribute("payment", orderInfo.getPayment());
+        request.getSession().setAttribute("orderId", orderId);
+        request.getSession().setAttribute("payment", orderInfo.getPayment());
         DateTime dateTime = new DateTime();
-        dateTime.plusDays(3);
-        model.addAttribute("date", dateTime.toString("yyyy-MM-dd"));
-        return "success";
+        DateTime time = dateTime.plusDays(3);
+        request.getSession().setAttribute("date", time.toString("yyyy-MM-dd"));
+        return "redirect:/page/success.action";
 
     }
 

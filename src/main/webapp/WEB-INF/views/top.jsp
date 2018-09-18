@@ -79,7 +79,7 @@
                 <a href="#">我的订单</a>
             </li>
             <li>
-                <a href="/page/goCart.action">购物车</a>
+                <a href="/cart/cart.action">购物车</a>
             </li>
         </ul>
     </div>

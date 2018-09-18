@@ -9,19 +9,21 @@
 <html>
 <head>
     <title>订单成功页面</title>
+    <link type="text/css" rel="stylesheet"
+          href="//misc.360buyimg.com/jdf/1.0.0/unit/??ui-base/1.0.0/ui-base.css,shortcut/2.0.0/shortcut.css,global-header/1.0.0/global-header.css,myjd/2.0.0/myjd.css,nav/2.0.0/nav.css,shoppingcart/2.0.0/shoppingcart.css,global-footer/1.0.0/global-footer.css,service/1.0.0/service.css">
+    <link type="text/css" rel="stylesheet"
+          href="//misc.360buyimg.com/user/purchase/2.0.0/widget/??common/common.css,header-succ-2015/header-succ-2015.css,trade-success/trade-success.css"
+          source="widget">
 </head>
 <body>
 <div class="w w1 header clearfix">
     <div id="logo">
-        <a href="#" class="link1" target="_blank">
-            <img src="#">
-        </a>
         <a href="#none" class="link2"><b></b>"结算页"</a>
     </div>
     <div class="stepflex" id="#sflex03">
         <dl class="first done">
             <dt class="s-num">1</dt>
-            <dd class="s-text">1.填写验证码<s></s><b></b></dd>
+            <dd class="s-text">1.我的购物车<s></s><b></b></dd>
         </dl>
         <dl class="normal done">
             <dt class="s-num">2</dt>
@@ -76,14 +78,11 @@
                         </div>
                     </div>
                     <div class="mobile-ordertrack">
-                        <div class="ordertrack-trigger">
-                            <i class="i-mobile"></i><span class="txt">订单小助手&nbsp;随时随地查订单</span>
-                        </div>
+
                         <div class="wx-qrcode-tip">
                             <span class="tip-arrow"><em class="layer1"></em><em class="layer2"></em></span>
                             <div class="tip-inner">
-                                <img src="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGZ8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUm9Rc2x0Y0ZiRnMxd1JsUWhvMVQAAgS1w7JYAwSAUQEA"
-                                     id="qrcode-order" alt="" class="tip-img">
+                                <img id="qrcode-order" alt="" class="tip-img">
                                 <div class="tip-cont">
                                     <div class="tip-title">订单助手</div>
                                     <div class="tip-hint">关注微信公众号<br>随时随地查订单</div>
@@ -106,29 +105,22 @@
                 </div>
             </div>
             <div class="qr-code">
-                <a class="code" href="javascript:void(0)">
-                    <img alt=""
-                         src="//img10.360buyimg.com/da/jfs/t355/22/1290598403/5586/a8504482/5435f1eeNc4bfcf9e.jpg">
-                </a>
-                <a class="sao02" href="javascript:void(0)"></a>
             </div>
         </div>
         <div class="o-mb">完成支付后，您可以：
-            <a href="//www.jd.com" clstag="pageclick|keycount|trade_201602181|33">继续购物</a>&nbsp;&nbsp;<a
-                    href="http://surveys.jd.com/index.php?r=survey/index/sid/264885/newtest/Y/lang/zh-Hans"
-                    clstag="pageclick|keycount|trade_201602181|34">问题反馈</a>
+            <a href="/page/index.action">继续购物</a>&nbsp;&nbsp;<a
+                    href="#">问题反馈</a>
             <span class="jl-jingdou">
-            <a href="http://vip.jd.com/help_beansIntroduction.html" class="jl-la" style="color:#7ABD54;"
-               target="_blank">完成订单有机会奖励京豆</a> | 使用京豆更超值，请登录<a href="http://vip.jd.com/" target="_blank">会员俱乐部</a>
+            <a href="#" class="jl-la" style="color:#7ABD54;"
+               target="_blank">完成订单有机会奖励京豆</a> | 使用京豆更超值，请登录<a href="#" target="_blank">会员俱乐部</a>
           </span>
         </div>
     </div>
     <div class="w m" id="da930X100">
-        <a href="//c-nfa.jd.com/adclick?keyStr=z5AXFoIimt1jiDK32+w4me7Q3BzAuRONdfYEReONi9Pf82iKMw4v6HAfugOWO+2psa2o+gazQPvUz0tWFQ8wR0bvZcNQb6bW8NjA7sH4qnxa4eG9P+LQ+i7XDdn0nvJz1oEwRbUsC6tQMin70asoR/8NPBPOOMv67ZOyIBJTOJkWKGS/8IRmN5GpuqrBOPYDBvY0tDzeYVvO6GD7pv64H8vAa6QAm01CnX10pC6qyde7NopedPC3du7DL5C86LCm7rgAJfsDkN3cr39q/mKyOw8DnD4R7zcofvTr4ytU1fEqjV5eNKY+ZtEexFIgZ9O50KLb4qjigzwt6HHBU+SMjg==&amp;cv=2.0&amp;url=//sale.jd.com/act/N3VRifA7szZaoxuG.html"
+        <a href="#"
            target="_blank">
         </a>
     </div>
 </div>
-
 </body>
 </html>
