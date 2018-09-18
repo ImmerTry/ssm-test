@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 02/09/2018 10:52:38
+ Date: 18/09/2018 20:12:40
 */
 
 SET NAMES utf8mb4;
@@ -88,10 +88,28 @@ CREATE TABLE `t_order` (
   `closetime` datetime DEFAULT NULL COMMENT '交易关闭时间',
   `shippingname` varchar(20) DEFAULT NULL COMMENT '物流名称',
   `shippingcode` varchar(20) DEFAULT NULL COMMENT '物流单号',
-  `adminid` int(11) DEFAULT NULL COMMENT '用户ID',
+  `loginid` varchar(20) DEFAULT NULL COMMENT '用户昵称',
   `message` varchar(100) DEFAULT NULL COMMENT '买家留言',
   PRIMARY KEY (`orderid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_order` VALUES ('100017', '72', NULL, NULL, 1, '2018-09-17 20:01:57', '2018-09-17 20:01:57', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100018', '72', NULL, NULL, 1, '2018-09-17 20:02:14', '2018-09-17 20:02:14', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100019', '72', NULL, NULL, 1, '2018-09-17 20:06:56', '2018-09-17 20:06:56', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100020', '72', NULL, NULL, 1, '2018-09-17 20:10:18', '2018-09-17 20:10:18', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100021', '72', NULL, NULL, 1, '2018-09-17 20:10:45', '2018-09-17 20:10:45', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100022', '112', NULL, NULL, 1, '2018-09-17 20:30:35', '2018-09-17 20:30:35', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100023', '112', NULL, NULL, 1, '2018-09-17 20:30:48', '2018-09-17 20:30:48', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100024', '112', NULL, NULL, 1, '2018-09-17 20:33:19', '2018-09-17 20:33:19', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100025', '112', NULL, NULL, 1, '2018-09-17 20:33:29', '2018-09-17 20:33:29', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100026', '112', NULL, NULL, 1, '2018-09-17 20:34:18', '2018-09-17 20:34:18', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100027', '112', NULL, NULL, 1, '2018-09-17 20:39:10', '2018-09-17 20:39:10', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+INSERT INTO `t_order` VALUES ('100028', '112', NULL, NULL, 1, '2018-09-17 20:39:42', '2018-09-17 20:39:42', NULL, NULL, NULL, NULL, NULL, NULL, 'admin', NULL);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_order_info
@@ -110,19 +128,37 @@ CREATE TABLE `t_order_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of t_order_info
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_order_info` VALUES ('15', '1', '100017', 2, '越南进口红心火龙果 2个装 巨无霸大果 单果约600~700g 新鲜水果', 36, 72, '');
+INSERT INTO `t_order_info` VALUES ('16', '1', '100018', 2, '越南进口红心火龙果 2个装 巨无霸大果 单果约600~700g 新鲜水果', 36, 72, '');
+INSERT INTO `t_order_info` VALUES ('17', '1', '100019', 2, '越南进口红心火龙果 2个装 巨无霸大果 单果约600~700g 新鲜水果', 36, 72, '');
+INSERT INTO `t_order_info` VALUES ('18', '1', '100020', 2, '越南进口红心火龙果 2个装 巨无霸大果 单果约600~700g 新鲜水果', 36, 72, '');
+INSERT INTO `t_order_info` VALUES ('19', '1', '100021', 2, '越南进口红心火龙果 2个装 巨无霸大果 单果约600~700g 新鲜水果', 36, 72, '');
+INSERT INTO `t_order_info` VALUES ('20', '10', '100022', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+INSERT INTO `t_order_info` VALUES ('21', '10', '100023', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+INSERT INTO `t_order_info` VALUES ('22', '10', '100024', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+INSERT INTO `t_order_info` VALUES ('23', '10', '100025', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+INSERT INTO `t_order_info` VALUES ('24', '10', '100026', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+INSERT INTO `t_order_info` VALUES ('25', '10', '100027', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+INSERT INTO `t_order_info` VALUES ('26', '10', '100028', 4, 'Zespri佳沛 新西兰绿奇异果 6个装 经典36果 单果重约90-100g 新鲜水果', 28, 112, '');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for t_order_send
 -- ----------------------------
 DROP TABLE IF EXISTS `t_order_send`;
 CREATE TABLE `t_order_send` (
   `orderid` varchar(20) NOT NULL COMMENT '订单ID',
   `sendname` varchar(100) NOT NULL COMMENT '收货人名称',
-  `address` varchar(100) NOT NULL COMMENT '收货人地址',
-  `phoneno` int(11) NOT NULL COMMENT '收货人电话',
-  `province` char(50) NOT NULL COMMENT '省份',
-  `city` char(50) NOT NULL COMMENT '城市',
-  `region` char(50) NOT NULL COMMENT '区/县',
-  `detailed` varchar(100) NOT NULL COMMENT '收货人详情地址',
-  `postalcode` int(6) NOT NULL COMMENT '邮政编码',
+  `address` varchar(100) DEFAULT NULL COMMENT '收货人地址',
+  `phoneno` int(11) DEFAULT NULL COMMENT '收货人电话',
+  `province` char(50) DEFAULT NULL COMMENT '省份',
+  `city` char(50) DEFAULT NULL COMMENT '城市',
+  `region` char(50) DEFAULT NULL COMMENT '区/县',
+  `detailed` varchar(100) DEFAULT NULL COMMENT '收货人详情地址',
+  `postalcode` int(6) DEFAULT NULL COMMENT '邮政编码',
   PRIMARY KEY (`orderid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -165,15 +201,17 @@ CREATE TABLE `t_user` (
   `loginpwd` varchar(40) NOT NULL COMMENT '密码',
   `logintime` datetime DEFAULT NULL,
   PRIMARY KEY (`adminid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_user` VALUES (1, 'admin', '123456', '2018-06-27 11:49:57');
-INSERT INTO `t_user` VALUES (2, 'zs', '123', NULL);
-INSERT INTO `t_user` VALUES (3, 'll', '123456', NULL);
+INSERT INTO `t_user` VALUES (5, 'admin1', '202cb962ac59075b964b07152d234b70', '2018-09-03 06:26:54');
+INSERT INTO `t_user` VALUES (9, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '2018-09-04 21:51:31');
+INSERT INTO `t_user` VALUES (10, 'admin2', 'e10adc3949ba59abbe56e057f20f883e', '2018-09-04 22:00:29');
+INSERT INTO `t_user` VALUES (11, 'time', 'fcea920f7412b5da7be0cf42b8c93759', '2018-09-05 15:06:05');
+INSERT INTO `t_user` VALUES (12, 'll', 'e10adc3949ba59abbe56e057f20f883e', '2018-09-05 21:40:22');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
